@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@babel/core": "^7.6.2",
+    "@storybook/react": "^5.2.1",
     "@types/jest": "24.0.18",
     "@types/node": "12.7.9",
     "@types/react": "16.9.4",
@@ -20,7 +21,11 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "storybook": "start-storybook"
+    "storybook": "start-storybook",
+    "check:prettier": "prettier --list-different \"src/**/*.{ts,tsx,js,json,css,md}\"",
+    "check:tslint": "tslint -p ./tsconfig.json -c ./tslint.json \"src/**/*.+(ts|tsx)\"",
+    "fix:prettier": "prettier --write \"src/**/*.{ts,tsx,js,json,css,md}\"",
+    "fix:tslint": "tslint -p ./tsconfig.json -c ./tslint.json \"src/**/*.+(ts|tsx)\" --fix"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -38,6 +43,9 @@
     ]
   },
   "devDependencies": {
-    "@storybook/react": "^5.2.1"
+    "prettier": "^1.18.2",
+    "tslint": "^5.20.0",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-react": "^4.1.0"
   }
 }
