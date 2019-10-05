@@ -3,12 +3,16 @@ import styled from "styled-components";
 import { Icon, IconType } from "../../../components/Icon/Icon";
 import { Color, Rank } from "./types";
 
-const CardDiv = styled.div`
+interface ICardDiv {
+  height: number; // in vh unit
+}
+
+const CardDiv = styled.div<ICardDiv>`
   background: white;
   border-radius: 3vh;
-  border: 1px solid black;
-  height: 40vh;
-  width: 25vh;
+  box-shadow: 0 0 10px 5px gray;
+  height: ${({ height }) => height}vh;
+  width: ${({ height }) => 5 * height / 8}vh;
 `;
 
 const StyledIcon = styled(Icon)`
@@ -43,9 +47,10 @@ const rankSymbolMappings = {
 interface IProps {
   color: Color;
   rank: Rank;
+  height?: number;
 }
 
-export const Card: React.FC<IProps> = ({ color, rank }) => {
+export const Card: React.FC<IProps> = ({ color, rank, height = 60 }) => {
   const ColorIcon: React.FC<{}> = useMemo(
     () => () => (
       <StyledIcon iconType={colorIconTypeMapping[color]} alt="Color Icon" />
@@ -54,7 +59,7 @@ export const Card: React.FC<IProps> = ({ color, rank }) => {
   );
 
   return (
-    <CardDiv>
+    <CardDiv height={height}>
       {rankSymbolMappings[rank]}
       <ColorIcon />
     </CardDiv>
