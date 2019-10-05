@@ -12,10 +12,12 @@
     "@types/react-dom": "16.9.1",
     "@types/storybook__addon-knobs": "^5.0.4",
     "@types/storybook__react": "^4.0.2",
+    "@types/styled-components": "^4.1.19",
     "babel-loader": "^8.0.6",
     "react": "^16.10.1",
     "react-dom": "^16.10.1",
     "react-scripts": "3.2.0",
+    "styled-components": "^4.4.0",
     "typescript": "3.6.3"
   },
   "scripts": {

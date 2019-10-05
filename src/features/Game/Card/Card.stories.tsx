@@ -22,9 +22,9 @@ const rankOptions = {
 
 storiesOf("Features|Game/Card", module)
   .addDecorator(withKnobs)
-  .add("default", () => 
-    <Card 
+  .add("default", () => (
+    <Card
       color={select("Color", colorOptions, Color.Clubs)}
-      rank={select("Rank", rankOptions, Rank.Nine)} 
-    />);
-    
+      rank={select("Rank", rankOptions, Rank.Nine)}
+    />
+  ));
