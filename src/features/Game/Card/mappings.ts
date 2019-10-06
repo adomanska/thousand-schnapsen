@@ -52,9 +52,9 @@ export const ranksColorsIconTypesMapping: RanksColorsIconTypesMapping = {
   },
   [Rank.Nine]: {
     [Color.Clubs]: IconType.NineClubs,
-    [Color.Diamonds]: IconType.ColorDiamonds,
-    [Color.Hearts]: IconType.ColorHearts,
-    [Color.Spades]: IconType.ColorSpades
+    [Color.Diamonds]: IconType.NineDiamonds,
+    [Color.Hearts]: IconType.NineHearts,
+    [Color.Spades]: IconType.NineSpades
   },
   [Rank.Queen]: {
     [Color.Clubs]: IconType.QueenBlack,
@@ -63,9 +63,9 @@ export const ranksColorsIconTypesMapping: RanksColorsIconTypesMapping = {
     [Color.Spades]: IconType.QueenBlack
   },
   [Rank.Ten]: {
-    [Color.Clubs]: IconType.ColorClubs,
-    [Color.Diamonds]: IconType.ColorDiamonds,
-    [Color.Hearts]: IconType.ColorHearts,
-    [Color.Spades]: IconType.ColorSpades
+    [Color.Clubs]: IconType.TenClubs,
+    [Color.Diamonds]: IconType.TenDiamonds,
+    [Color.Hearts]: IconType.TenHearts,
+    [Color.Spades]: IconType.TenSpades
   }
 };

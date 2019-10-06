@@ -36,17 +36,15 @@ const CardColumn = styled.div<ICardColumn>`
   float: left;
   height: 100%;
   display: flex;
-  font-size: 5vh;
-  font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
   transform: ${({ rotation }) => rotation ? `rotate(${rotation}turn)` : undefined};
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  padding: 1.5vh;
 `
 const SideColumn = styled(CardColumn)`
   flex-direction: column;
   justify-content: flex-start;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 1.5vh;
 `
 
 const MiddleColumn = styled(CardColumn)`
@@ -56,6 +54,8 @@ const MiddleColumn = styled(CardColumn)`
 const RankSpan = styled.span`
   display: flex;
   justify-content: center;
+  font-size: 5vh;
+  font-family: Arial;
 `
 
 const StyledIcon = styled(Icon)`
