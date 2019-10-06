@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Card } from "../Card/Card";
-import { Color, Rank } from "../Card/types";
+import { ICard } from "../types";
 
 const CardsSetDiv = styled.div`
   display: flex;
@@ -16,11 +16,6 @@ const StyledCard = styled(Card)<IStyledCard>`
   left: ${({ offset }) => offset}vh;
   position: absolute;
 `;
-
-export interface ICard {
-  rank: Rank;
-  color: Color;
-}
 
 interface IProps {
   cards: ICard[];

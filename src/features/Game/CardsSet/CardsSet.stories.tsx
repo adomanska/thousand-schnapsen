@@ -1,7 +1,8 @@
 import { storiesOf } from "@storybook/react";
 import React from "react";
 import { Color, Rank } from "../Card/types";
-import { CardsSet, ICard } from "./CardsSet";
+import { ICard } from "../types";
+import { CardsSet } from "./CardsSet";
 
 const cards: ICard[] = [
   {
