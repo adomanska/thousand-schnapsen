@@ -27,7 +27,7 @@ export const ranksSymbolsMapping: RanksSymbolsMapping = {
 
 type RanksColorsIconTypesMapping = {
   [rank in Rank]: {
-    [color in Color]: IconType
+    [color in Color]: IconType;
   };
 };
 

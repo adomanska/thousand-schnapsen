@@ -1,15 +1,15 @@
 export enum Color {
-  Clubs = "CLUBS",
-  Diamonds = "DIAMONDS",
-  Hearts = "HEARTS",
-  Spades = "SPADES"
+  Spades,
+  Clubs,
+  Diamonds,
+  Hearts
 }
 
 export enum Rank {
-  Nine = "9",
-  Ten = "10",
-  Jack = "JACK",
-  Queen = "QUEEN",
-  King = "KING",
-  Ace = "ACE"
+  Nine,
+  Jack,
+  Queen,
+  King,
+  Ten,
+  Ace
 }

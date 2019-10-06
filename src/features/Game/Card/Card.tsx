@@ -1,7 +1,11 @@
 import React, { useMemo } from "react";
 import styled from "styled-components";
 import { Icon } from "../../../components/Icon/Icon";
-import { colorsIconTypesMapping, ranksColorsIconTypesMapping, ranksSymbolsMapping } from "./mappings";
+import {
+  colorsIconTypesMapping,
+  ranksColorsIconTypesMapping,
+  ranksSymbolsMapping
+} from "./mappings";
 import { Color, Rank } from "./types";
 
 interface ICardDiv {
@@ -13,7 +17,7 @@ const CardDiv = styled.div<ICardDiv>`
   border-radius: 3vh;
   box-shadow: 0 0 10px 5px gray;
   height: ${({ height }) => height}vh;
-  width: ${({ height }) => 5 * height / 8}vh;
+  width: ${({ height }) => (5 * height) / 8}vh;
 
   &:after {
     content: "";
@@ -36,8 +40,9 @@ const CardColumn = styled.div<ICardColumn>`
   float: left;
   height: 100%;
   display: flex;
-  transform: ${({ rotation }) => rotation ? `rotate(${rotation}turn)` : undefined};
-`
+  transform: ${({ rotation }) =>
+    rotation ? `rotate(${rotation}turn)` : undefined};
+`;
 const SideColumn = styled(CardColumn)`
   flex-direction: column;
   justify-content: flex-start;
@@ -45,18 +50,18 @@ const SideColumn = styled(CardColumn)`
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   padding: 1.5vh;
-`
+`;
 
 const MiddleColumn = styled(CardColumn)`
   justify-content: center;
-`
+`;
 
 const RankSpan = styled.span`
   display: flex;
   justify-content: center;
   font-size: 5vh;
   font-family: Arial;
-`
+`;
 
 const StyledIcon = styled(Icon)`
   width: 100%;
@@ -67,9 +72,15 @@ interface IProps {
   color: Color;
   rank: Rank;
   height?: number;
+  className?: string;
 }
 
-export const Card: React.FC<IProps> = ({ color, rank, height = 60 }) => {
+export const Card: React.FC<IProps> = ({
+  color,
+  rank,
+  className,
+  height = 60
+}) => {
   const ColorIcon: React.FC = useMemo(
     () => () => (
       <StyledIcon iconType={colorsIconTypesMapping[color]} alt="Color Icon" />
@@ -79,23 +90,26 @@ export const Card: React.FC<IProps> = ({ color, rank, height = 60 }) => {
 
   const RankIcon: React.FC = useMemo(
     () => () => (
-      <StyledIcon iconType={ranksColorsIconTypesMapping[rank][color]} alt="Rank Icon" />
+      <StyledIcon
+        iconType={ranksColorsIconTypesMapping[rank][color]}
+        alt="Rank Icon"
+      />
     ),
     [rank, color]
   );
 
   return (
-    <CardDiv height={height}>
+    <CardDiv height={height} className={className}>
       <SideColumn width={20}>
         <RankSpan>{ranksSymbolsMapping[rank]}</RankSpan>
-        <ColorIcon/>
+        <ColorIcon />
       </SideColumn>
       <MiddleColumn width={60}>
-        <RankIcon/>
+        <RankIcon />
       </MiddleColumn>
       <SideColumn width={20} rotation={0.5}>
         <RankSpan>{ranksSymbolsMapping[rank]}</RankSpan>
-        <ColorIcon/>
+        <ColorIcon />
       </SideColumn>
     </CardDiv>
   );
