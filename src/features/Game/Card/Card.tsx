@@ -1,6 +1,7 @@
 import React, { useMemo } from "react";
 import styled from "styled-components";
-import { Icon, IconType } from "../../../components/Icon/Icon";
+import { Icon } from "../../../components/Icon/Icon";
+import { colorsIconTypesMapping, ranksColorsIconTypesMapping, ranksSymbolsMapping } from "./mappings";
 import { Color, Rank } from "./types";
 
 interface ICardDiv {
@@ -13,36 +14,54 @@ const CardDiv = styled.div<ICardDiv>`
   box-shadow: 0 0 10px 5px gray;
   height: ${({ height }) => height}vh;
   width: ${({ height }) => 5 * height / 8}vh;
+
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  &:hover {
+    box-shadow: 0 0 10px 5px lightblue;
+  }
 `;
+
+interface ICardColumn {
+  width: number; // in percents
+  rotation?: number; // in turns
+}
+
+const CardColumn = styled.div<ICardColumn>`
+  width: ${({ width }) => width}%;
+  float: left;
+  height: 100%;
+  display: flex;
+  font-size: 5vh;
+  font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+  transform: ${({ rotation }) => rotation ? `rotate(${rotation}turn)` : undefined};
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 1.5vh;
+`
+const SideColumn = styled(CardColumn)`
+  flex-direction: column;
+  justify-content: flex-start;
+`
+
+const MiddleColumn = styled(CardColumn)`
+  justify-content: center;
+`
+
+const RankSpan = styled.span`
+  display: flex;
+  justify-content: center;
+`
 
 const StyledIcon = styled(Icon)`
   width: 100%;
-  height: 100%;
+  height: auto;
 `;
-
-type ColorsIconTypesMapping = {
-  [key in Color]: IconType;
-};
-
-const colorIconTypeMapping: ColorsIconTypesMapping = {
-  [Color.Clubs]: IconType.ColorClubs,
-  [Color.Diamonds]: IconType.ColorDiamonds,
-  [Color.Hearts]: IconType.ColorHearts,
-  [Color.Spades]: IconType.ColorSpades
-};
-
-type rankSymbolMappings = {
-  [key in Rank]: string;
-};
-
-const rankSymbolMappings = {
-  [Rank.Ace]: "A",
-  [Rank.Jack]: "J",
-  [Rank.King]: "K",
-  [Rank.Nine]: "9",
-  [Rank.Queen]: "Q",
-  [Rank.Ten]: "10"
-};
 
 interface IProps {
   color: Color;
@@ -51,17 +70,33 @@ interface IProps {
 }
 
 export const Card: React.FC<IProps> = ({ color, rank, height = 60 }) => {
-  const ColorIcon: React.FC<{}> = useMemo(
+  const ColorIcon: React.FC = useMemo(
     () => () => (
-      <StyledIcon iconType={colorIconTypeMapping[color]} alt="Color Icon" />
+      <StyledIcon iconType={colorsIconTypesMapping[color]} alt="Color Icon" />
     ),
     [color]
   );
 
+  const RankIcon: React.FC = useMemo(
+    () => () => (
+      <StyledIcon iconType={ranksColorsIconTypesMapping[rank][color]} alt="Rank Icon" />
+    ),
+    [rank, color]
+  );
+
   return (
     <CardDiv height={height}>
-      {rankSymbolMappings[rank]}
-      <ColorIcon />
+      <SideColumn width={20}>
+        <RankSpan>{ranksSymbolsMapping[rank]}</RankSpan>
+        <ColorIcon/>
+      </SideColumn>
+      <MiddleColumn width={60}>
+        <RankIcon/>
+      </MiddleColumn>
+      <SideColumn width={20} rotation={0.5}>
+        <RankSpan>{ranksSymbolsMapping[rank]}</RankSpan>
+        <ColorIcon/>
+      </SideColumn>
     </CardDiv>
   );
 };

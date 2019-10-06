@@ -1,6 +1,6 @@
 import { Rank } from "./types";
 
-export const RankValueMap: { [key: string]: number } = {
+export const RankValueMap: { [key in Rank]: number } = {
   [Rank.Nine]: 0,
   [Rank.Jack]: 2,
   [Rank.Queen]: 3,
