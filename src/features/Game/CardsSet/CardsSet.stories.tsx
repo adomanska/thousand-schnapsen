@@ -1,3 +1,4 @@
+import { boolean, withKnobs } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import React from "react";
 import { Color, Rank } from "../Card/types";
@@ -35,6 +36,8 @@ const cards: ICard[] = [
   }
 ];
 
-storiesOf("Features|Game/CardsSet", module).add("default", () => (
-  <CardsSet cards={cards} cardsToSelectCount={2}/>
-));
+storiesOf("Features|Game/CardsSet", module)
+  .addDecorator(withKnobs)
+  .add("default", () => (
+    <CardsSet cards={cards} cardsToSelectCount={2} active={boolean("Active", true)}/>
+  ));

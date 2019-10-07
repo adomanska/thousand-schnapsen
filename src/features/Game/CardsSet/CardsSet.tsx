@@ -3,9 +3,15 @@ import styled from "styled-components";
 import { Card } from "../Card/Card";
 import { ICard } from "../types";
 
-const CardsSetDiv = styled.div`
+interface ICardsSetDiv {
+  active?: boolean;
+}
+
+const CardsSetDiv = styled.div<ICardsSetDiv>`
   display: flex;
   position: relative;
+  cursor: ${({ active }) => active ? "pointer" : "default"};
+  pointer-events: ${({ active }) => active ? "auto" : "none"};
 `;
 
 interface IStyledCard {
@@ -18,7 +24,6 @@ const StyledCard = styled(Card)<IStyledCard>`
   left: ${({ offsetStep, index }) => offsetStep * index}vh;
   position: absolute;
   top: ${({ selected, offsetStep }) => selected ? 0 : offsetStep / 2}vh;
-  cursor: pointer;
 `;
 
 interface IProps {
@@ -29,7 +34,7 @@ interface IProps {
   onSelect?: (cards: ICard[]) => void;
 }
 
-export const CardsSet: React.FC<IProps> = ({ cards, cardsToSelectCount, onSelect, height = 60 }) => {
+export const CardsSet: React.FC<IProps> = ({ cards, cardsToSelectCount, onSelect, active, height = 60 }) => {
   const [selectedCards, setSelectedCards] = useState<ICard[]>([]);
 
   const offsetStep = height / 6;
@@ -57,7 +62,7 @@ export const CardsSet: React.FC<IProps> = ({ cards, cardsToSelectCount, onSelect
   }, [cardsToSelectCount, selectedCards])
 
   return (
-    <CardsSetDiv>
+    <CardsSetDiv active={active}>
       {cards.sort(cardsCompare).map((card, index) => (
         <StyledCard
           key={`card-${index}`}
