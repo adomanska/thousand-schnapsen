@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import styled from "styled-components";
 import { Card } from "../Card/Card";
 import { ICard } from "../types";
@@ -9,20 +9,30 @@ const CardsSetDiv = styled.div`
 `;
 
 interface IStyledCard {
-  offset: number;
+  offsetStep: number;
+  index: number;
+  selected?: boolean;
 }
 
 const StyledCard = styled(Card)<IStyledCard>`
-  left: ${({ offset }) => offset}vh;
+  left: ${({ offsetStep, index }) => offsetStep * index}vh;
   position: absolute;
+  pointer-events: ${({ selected }) => selected ? "none" : "auto"};
+  box-shadow: 0 0 10px 5px ${({ selected }) => selected ? "lightblue" : "gray"};
+  top: ${({ selected, offsetStep }) => selected ? 0 : offsetStep / 2}vh;
 `;
 
 interface IProps {
   cards: ICard[];
   height?: number;
+  active?: boolean;
+  cardsToSelectCount?: number;
+  onSelect?: (cards: ICard[]) => void;
 }
 
-export const CardsSet: React.FC<IProps> = ({ cards, height = 60 }) => {
+export const CardsSet: React.FC<IProps> = ({ cards, cardsToSelectCount, onSelect, height = 60 }) => {
+  const [selectedCards, setSelectedCards] = useState<ICard[]>([]);
+
   const offsetStep = height / 6;
 
   const cardsCompare = (cardA: ICard, cardB: ICard) => {
@@ -35,6 +45,14 @@ export const CardsSet: React.FC<IProps> = ({ cards, height = 60 }) => {
     }
   };
 
+  const handleCardSelect = useCallback((selectedCard: ICard) => () => {
+    if (cardsToSelectCount && selectedCards.length >= cardsToSelectCount) {
+      setSelectedCards([...selectedCards.slice(1), selectedCard]);
+    } else {
+      setSelectedCards([...selectedCards, selectedCard]);
+    }
+  }, [cardsToSelectCount, selectedCards])
+
   return (
     <CardsSetDiv>
       {cards.sort(cardsCompare).map((card, index) => (
@@ -43,7 +61,10 @@ export const CardsSet: React.FC<IProps> = ({ cards, height = 60 }) => {
           height={height}
           color={card.color}
           rank={card.rank}
-          offset={index * offsetStep}
+          offsetStep={offsetStep}
+          index={index}
+          selected={selectedCards.includes(card)}
+          onClick={handleCardSelect(card)}
         />
       ))}
     </CardsSetDiv>

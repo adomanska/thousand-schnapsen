@@ -73,12 +73,14 @@ interface IProps {
   rank: Rank;
   height?: number;
   className?: string;
+  onClick?: () => void;
 }
 
 export const Card: React.FC<IProps> = ({
   color,
   rank,
   className,
+  onClick,
   height = 60
 }) => {
   const ColorIcon: React.FC = useMemo(
@@ -99,7 +101,7 @@ export const Card: React.FC<IProps> = ({
   );
 
   return (
-    <CardDiv height={height} className={className}>
+    <CardDiv height={height} className={className} onClick={onClick}>
       <SideColumn width={20}>
         <RankSpan>{ranksSymbolsMapping[rank]}</RankSpan>
         <ColorIcon />

@@ -36,5 +36,5 @@ const cards: ICard[] = [
 ];
 
 storiesOf("Features|Game/CardsSet", module).add("default", () => (
-  <CardsSet cards={cards} />
+  <CardsSet cards={cards} cardsToSelectCount={2}/>
 ));
