@@ -17,9 +17,8 @@ interface IStyledCard {
 const StyledCard = styled(Card)<IStyledCard>`
   left: ${({ offsetStep, index }) => offsetStep * index}vh;
   position: absolute;
-  pointer-events: ${({ selected }) => selected ? "none" : "auto"};
-  box-shadow: 0 0 10px 5px ${({ selected }) => selected ? "lightblue" : "gray"};
   top: ${({ selected, offsetStep }) => selected ? 0 : offsetStep / 2}vh;
+  cursor: pointer;
 `;
 
 interface IProps {
@@ -46,6 +45,10 @@ export const CardsSet: React.FC<IProps> = ({ cards, cardsToSelectCount, onSelect
   };
 
   const handleCardSelect = useCallback((selectedCard: ICard) => () => {
+    if (selectedCards.includes(selectedCard)) {
+      setSelectedCards(selectedCards.filter(card => card !== selectedCard));
+      return;
+    }
     if (cardsToSelectCount && selectedCards.length >= cardsToSelectCount) {
       setSelectedCards([...selectedCards.slice(1), selectedCard]);
     } else {
