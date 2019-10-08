@@ -91,7 +91,7 @@ export const Card: React.FC<IProps> = ({
   rank,
   className,
   onClick,
-  revealed,
+  revealed = true,
   height = 60
 }) => {
   const ColorIcon: React.FC = useMemo(
