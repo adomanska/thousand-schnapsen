@@ -1,4 +1,4 @@
-import { select, withKnobs } from "@storybook/addon-knobs";
+import { boolean, select, withKnobs } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import React from "react";
 import { Card } from "./Card";
@@ -26,5 +26,6 @@ storiesOf("Features|Game/Card", module)
     <Card
       color={select("Color", colorOptions, Color.Clubs)}
       rank={select("Rank", rankOptions, Rank.Nine)}
+      revealed={boolean("Revealed", true)}
     />
   ));

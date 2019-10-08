@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import styled from "styled-components";
-import { Icon } from "../../../components/Icon/Icon";
+import { Icon, IconType } from "../../../components/Icon/Icon";
 import {
   colorsIconTypesMapping,
   ranksColorsIconTypesMapping,
@@ -68,12 +68,22 @@ const StyledIcon = styled(Icon)`
   height: auto;
 `;
 
+const CardBack = styled(Icon)`
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  padding: 4vh;
+`;
+
 interface IProps {
   color: Color;
   rank: Rank;
   height?: number;
   className?: string;
   onClick?: () => void;
+  revealed?: boolean;
 }
 
 export const Card: React.FC<IProps> = ({
@@ -81,6 +91,7 @@ export const Card: React.FC<IProps> = ({
   rank,
   className,
   onClick,
+  revealed,
   height = 60
 }) => {
   const ColorIcon: React.FC = useMemo(
@@ -102,17 +113,23 @@ export const Card: React.FC<IProps> = ({
 
   return (
     <CardDiv height={height} className={className} onClick={onClick}>
-      <SideColumn width={20}>
-        <RankSpan>{ranksSymbolsMapping[rank]}</RankSpan>
-        <ColorIcon />
-      </SideColumn>
-      <MiddleColumn width={60}>
-        <RankIcon />
-      </MiddleColumn>
-      <SideColumn width={20} rotation={0.5}>
-        <RankSpan>{ranksSymbolsMapping[rank]}</RankSpan>
-        <ColorIcon />
-      </SideColumn>
+      {revealed ? (
+        <>
+          <SideColumn width={20}>
+            <RankSpan>{ranksSymbolsMapping[rank]}</RankSpan>
+            <ColorIcon />
+          </SideColumn>
+          <MiddleColumn width={60}>
+            <RankIcon />
+          </MiddleColumn>
+          <SideColumn width={20} rotation={0.5}>
+            <RankSpan>{ranksSymbolsMapping[rank]}</RankSpan>
+            <ColorIcon />
+          </SideColumn>
+        </>
+      ) : (
+        <CardBack iconType={IconType.CardBack} alt="Card Back" />
+      )}
     </CardDiv>
   );
 };

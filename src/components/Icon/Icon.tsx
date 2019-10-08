@@ -1,4 +1,5 @@
 import React from "react";
+import CardBack from "../../assets/icons/card-back.svg";
 import ColorClubs from "../../assets/icons/color-clubs.svg";
 import ColorDiamonds from "../../assets/icons/color-diamonds.svg";
 import ColorHearts from "../../assets/icons/color-hearts.svg";
@@ -19,6 +20,7 @@ import TenHearts from "../../assets/icons/ten-hearts.svg";
 import TenSpades from "../../assets/icons/ten-spades.svg";
 
 export enum IconType {
+  CardBack = "CARD_BACK",
   ColorClubs = "COLOR_CLUBS",
   ColorDiamonds = "COLOR_DIAMONDS",
   ColorHearts = "COLOR_HEARTS",
@@ -42,6 +44,7 @@ export enum IconType {
 type IconsTypesMappings = { [key in IconType]: string };
 
 const iconsTypesMappings: IconsTypesMappings = {
+  [IconType.CardBack]: CardBack,
   [IconType.ColorClubs]: ColorClubs,
   [IconType.ColorDiamonds]: ColorDiamonds,
   [IconType.ColorHearts]: ColorHearts,
