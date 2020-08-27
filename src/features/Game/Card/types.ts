@@ -2,7 +2,7 @@ export enum Color {
   Spades,
   Clubs,
   Diamonds,
-  Hearts
+  Hearts,
 }
 
 export enum Rank {
@@ -11,5 +11,5 @@ export enum Rank {
   Queen,
   King,
   Ten,
-  Ace
+  Ace,
 }

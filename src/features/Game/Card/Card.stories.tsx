@@ -8,7 +8,7 @@ const colorOptions = {
   Clubs: Color.Clubs,
   Diamonds: Color.Diamonds,
   Hearts: Color.Hearts,
-  Spades: Color.Spades
+  Spades: Color.Spades,
 };
 
 const rankOptions = {
@@ -17,7 +17,7 @@ const rankOptions = {
   Queen: Rank.Queen,
   King: Rank.King,
   10: Rank.Ten,
-  Ace: Rank.Ace
+  Ace: Rank.Ace,
 };
 
 storiesOf("Features|Game/Card", module)

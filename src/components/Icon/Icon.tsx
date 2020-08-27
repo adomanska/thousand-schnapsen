@@ -38,7 +38,7 @@ export enum IconType {
   TenClubs = "TEN_CLUBS",
   TenDiamonds = "TEN_DIAMONDS",
   TenHearts = "TEN_HEARTS",
-  TenSpades = "TEN_SPADES"
+  TenSpades = "TEN_SPADES",
 }
 
 type IconsTypesMappings = { [key in IconType]: string };
@@ -62,7 +62,7 @@ const iconsTypesMappings: IconsTypesMappings = {
   [IconType.TenClubs]: TenClubs,
   [IconType.TenDiamonds]: TenDiamonds,
   [IconType.TenHearts]: TenHearts,
-  [IconType.TenSpades]: TenSpades
+  [IconType.TenSpades]: TenSpades,
 };
 
 interface IProps {

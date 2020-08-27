@@ -8,32 +8,32 @@ import { CardsSet } from "./CardsSet";
 const initialCards: ICard[] = [
   {
     color: Color.Diamonds,
-    rank: Rank.Nine
+    rank: Rank.Nine,
   },
   {
     color: Color.Clubs,
-    rank: Rank.Nine
+    rank: Rank.Nine,
   },
   {
     color: Color.Diamonds,
-    rank: Rank.Ace
+    rank: Rank.Ace,
   },
   {
     color: Color.Diamonds,
-    rank: Rank.Jack
+    rank: Rank.Jack,
   },
   {
     color: Color.Hearts,
-    rank: Rank.Ten
+    rank: Rank.Ten,
   },
   {
     color: Color.Spades,
-    rank: Rank.Queen
+    rank: Rank.Queen,
   },
   {
     color: Color.Clubs,
-    rank: Rank.Jack
-  }
+    rank: Rank.Jack,
+  },
 ];
 
 const cardsToSelectCountOptions = {
@@ -43,14 +43,14 @@ const cardsToSelectCountOptions = {
   4: 4,
   5: 5,
   6: 6,
-  7: 7
+  7: 7,
 };
 
 const CardsSetWrapper: React.FC = () => {
   const [cards, setCards] = useState(initialCards);
 
   const handleSelect = (selectedCards: ICard[]) => {
-    const newCards = cards.filter(card => !selectedCards.includes(card));
+    const newCards = cards.filter((card) => !selectedCards.includes(card));
     setCards(newCards);
   };
 
