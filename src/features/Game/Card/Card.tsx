@@ -4,7 +4,7 @@ import { Icon, IconType } from "../../../components/Icon/Icon";
 import {
   colorsIconTypesMapping,
   ranksColorsIconTypesMapping,
-  ranksSymbolsMapping
+  ranksSymbolsMapping,
 } from "./mappings";
 import { Color, Rank } from "./types";
 
@@ -92,7 +92,7 @@ export const Card: React.FC<IProps> = ({
   className,
   onClick,
   revealed = true,
-  height = 60
+  height = 60,
 }) => {
   const ColorIcon: React.FC = useMemo(
     () => () => (

@@ -6,5 +6,5 @@ export const RankValueMap: { [key in Rank]: number } = {
   [Rank.Queen]: 3,
   [Rank.King]: 4,
   [Rank.Ten]: 10,
-  [Rank.Ace]: 11
+  [Rank.Ace]: 11,
 };

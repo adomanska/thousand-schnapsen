@@ -7,16 +7,16 @@ import { CardsStack } from "./CardsStack";
 const cards: ICard[] = [
   {
     color: Color.Diamonds,
-    rank: Rank.Nine
+    rank: Rank.Nine,
   },
   {
     color: Color.Clubs,
-    rank: Rank.Nine
+    rank: Rank.Nine,
   },
   {
     color: Color.Diamonds,
-    rank: Rank.Ace
-  }
+    rank: Rank.Ace,
+  },
 ];
 
 storiesOf("Features|Game/CardsStack", module).add("default", () => (

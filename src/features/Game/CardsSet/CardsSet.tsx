@@ -64,7 +64,7 @@ export const CardsSet: React.FC<IProps> = ({
   cardsToSelectCount,
   onSelect,
   active,
-  height = 60
+  height = 60,
 }) => {
   const [selectedCards, setSelectedCards] = useState<ICard[]>([]);
 
@@ -90,7 +90,7 @@ export const CardsSet: React.FC<IProps> = ({
   const handleCardSelect = useCallback(
     (selectedCard: ICard) => () => {
       if (selectedCards.includes(selectedCard)) {
-        setSelectedCards(selectedCards.filter(card => card !== selectedCard));
+        setSelectedCards(selectedCards.filter((card) => card !== selectedCard));
         return;
       }
       if (cardsToSelectCount && selectedCards.length >= cardsToSelectCount) {
