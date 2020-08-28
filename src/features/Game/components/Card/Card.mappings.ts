@@ -1,5 +1,5 @@
-import { IconType } from "../../../components/Icon/Icon";
-import { Color, Rank } from "./types";
+import { IconType } from "../../../../components/Icon/Icon";
+import { Color, Rank } from "../../utils/types";
 
 type ColorsIconTypesMapping = {
   [key in Color]: IconType;

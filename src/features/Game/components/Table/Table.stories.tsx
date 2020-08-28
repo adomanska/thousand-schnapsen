@@ -1,8 +1,8 @@
 import { storiesOf } from "@storybook/react";
 import React from "react";
-import { Color, Rank } from "../Card/types";
-import { ICard } from "../types";
-import { CardsStack } from "./CardsStack";
+import { ICard, Color, Rank } from "../../utils/types";
+import { Table } from "./Table";
+import { CardsStack } from "../CardsStack";
 
 const cards: ICard[] = [
   {
@@ -19,6 +19,8 @@ const cards: ICard[] = [
   },
 ];
 
-storiesOf("Features|Game/CardsStack", module).add("default", () => (
-  <CardsStack cards={cards} />
+storiesOf("Features|Game/Table", module).add("default", () => (
+  <Table>
+    <CardsStack cards={cards} size={"medium"} />
+  </Table>
 ));

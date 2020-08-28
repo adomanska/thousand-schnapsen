@@ -13,3 +13,10 @@ export enum Rank {
   Ten,
   Ace,
 }
+
+export interface ICard {
+  rank: Rank;
+  color: Color;
+}
+
+export type Size = "small" | "medium" | "large";

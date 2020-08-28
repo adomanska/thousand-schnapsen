@@ -1,8 +1,7 @@
 import { boolean, select, withKnobs } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import React, { useState } from "react";
-import { Color, Rank } from "../Card/types";
-import { ICard } from "../types";
+import { ICard, Color, Rank, Size } from "../../utils/types";
 import { CardsSet } from "./CardsSet";
 
 const initialCards: ICard[] = [
@@ -46,6 +45,12 @@ const cardsToSelectCountOptions = {
   7: 7,
 };
 
+const sizeOptions: { [key: string]: Size } = {
+  Small: "small",
+  Medium: "medium",
+  Large: "large",
+};
+
 const CardsSetWrapper: React.FC = () => {
   const [cards, setCards] = useState(initialCards);
 
@@ -64,6 +69,7 @@ const CardsSetWrapper: React.FC = () => {
       )}
       active={boolean("Active", true)}
       onSelect={handleSelect}
+      size={select("Size", sizeOptions, "small")}
     />
   );
 };
