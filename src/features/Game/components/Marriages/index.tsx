@@ -1,0 +1,1 @@
+export { Marriages } from "./Marriages";
