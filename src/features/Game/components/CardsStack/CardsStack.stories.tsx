@@ -1,4 +1,4 @@
-import { select, withKnobs } from "@storybook/addon-knobs";
+import { select, boolean, withKnobs } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import React from "react";
 import { ICard, Color, Rank, Size } from "../../utils/types";
@@ -31,5 +31,6 @@ storiesOf("Features|Game/CardsStack", module)
     <CardsStack 
       cards={cards}
       size={select("Size", sizeOptions, "small")}
+      revealed={boolean("Revealed", true)}
     />
   ));

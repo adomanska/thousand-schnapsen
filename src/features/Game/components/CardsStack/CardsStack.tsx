@@ -24,9 +24,10 @@ const RotatedCard = styled(Card)<IRotatedCardProps>`
 interface ICardsStackProps {
   cards: ICard[];
   size?: Size;
+  revealed?: boolean;
 }
 
-export const CardsStack: React.FC<ICardsStackProps> = ({ cards, size }) => {
+export const CardsStack: React.FC<ICardsStackProps> = ({ cards, size, revealed }) => {
   const rotationStep = 0.06;
 
   return (
@@ -38,6 +39,7 @@ export const CardsStack: React.FC<ICardsStackProps> = ({ cards, size }) => {
           rank={card.rank}
           rotation={rotationStep * index}
           size={size}
+          revealed={revealed}
         />
       ))}
     </CardsStackDiv>
