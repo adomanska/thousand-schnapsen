@@ -1,4 +1,4 @@
-import { Rank } from "./Card.types";
+import { Rank } from "../../utils/types";
 
 export const RankValueMap: { [key in Rank]: number } = {
   [Rank.Nine]: 0,

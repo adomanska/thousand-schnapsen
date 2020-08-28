@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Size } from "../Card.types";
+import { Size } from "../../../utils/types";
 import { Icon } from "../../../../../components/Icon/Icon";
 
 const sizePaddingMappings = {

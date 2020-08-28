@@ -1,4 +1,4 @@
-import { Size } from "../Card.types";
+import { Size } from "../../../utils/types";
 import styled from "styled-components";
 import { CardColumn } from "./CardColumn";
 
