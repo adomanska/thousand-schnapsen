@@ -3,13 +3,13 @@ import styled from "styled-components";
 import { CardColumn } from "./CardColumn";
 
 const sizePaddingMappings = {
-    "small": "0.2rem",
-    "medium": "0.3rem",
-    "large": "0.4rem",
-}
+  small: "0.2rem",
+  medium: "0.3rem",
+  large: "0.4rem",
+};
 
 interface IProps {
-    size: Size;
+  size: Size;
 }
 
 export const SideColumn = styled(CardColumn)<IProps>`
@@ -18,5 +18,5 @@ export const SideColumn = styled(CardColumn)<IProps>`
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-padding: ${({ size }) => sizePaddingMappings[size]};
+  padding: ${({ size }) => sizePaddingMappings[size]};
 `;

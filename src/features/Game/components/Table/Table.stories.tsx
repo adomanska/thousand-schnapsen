@@ -21,9 +21,6 @@ const cards: ICard[] = [
 
 storiesOf("Features|Game/Table", module).add("default", () => (
   <Table>
-    <CardsStack
-      cards={cards}
-      size={"medium"}
-    />
+    <CardsStack cards={cards} size={"medium"} />
   </Table>
 ));

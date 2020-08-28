@@ -19,16 +19,16 @@ const cards: ICard[] = [
   },
 ];
 
-const sizeOptions: {[key: string]: Size} = {
+const sizeOptions: { [key: string]: Size } = {
   Small: "small",
   Medium: "medium",
   Large: "large",
-}
+};
 
 storiesOf("Features|Game/CardsStack", module)
   .addDecorator(withKnobs)
   .add("default", () => (
-    <CardsStack 
+    <CardsStack
       cards={cards}
       size={select("Size", sizeOptions, "small")}
       revealed={boolean("Revealed", true)}

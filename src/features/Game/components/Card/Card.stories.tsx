@@ -20,11 +20,11 @@ const rankOptions = {
   Ace: Rank.Ace,
 };
 
-const sizeOptions: {[key: string]: Size} = {
+const sizeOptions: { [key: string]: Size } = {
   Small: "small",
   Medium: "medium",
   Large: "large",
-}
+};
 
 storiesOf("Features|Game/Card", module)
   .addDecorator(withKnobs)

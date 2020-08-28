@@ -45,11 +45,11 @@ const cardsToSelectCountOptions = {
   7: 7,
 };
 
-const sizeOptions: {[key: string]: Size} = {
+const sizeOptions: { [key: string]: Size } = {
   Small: "small",
   Medium: "medium",
   Large: "large",
-}
+};
 
 const CardsSetWrapper: React.FC = () => {
   const [cards, setCards] = useState(initialCards);

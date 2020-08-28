@@ -7,7 +7,13 @@ import {
   ranksSymbolsMapping,
 } from "./Card.mappings";
 import { Color, Rank } from "../../utils/types";
-import { CardDiv, CardBack, CardColumn, SideColumn, RankSpan } from "./components";
+import {
+  CardDiv,
+  CardBack,
+  CardColumn,
+  SideColumn,
+  RankSpan,
+} from "./components";
 
 const MiddleColumn = styled(CardColumn)`
   justify-content: center;
@@ -69,7 +75,7 @@ export const Card: React.FC<IProps> = ({
           </SideColumn>
         </>
       ) : (
-        <CardBack iconType={IconType.CardBack} alt="Card Back" size={size}/>
+        <CardBack iconType={IconType.CardBack} alt="Card Back" size={size} />
       )}
     </CardDiv>
   );

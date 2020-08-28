@@ -8,7 +8,7 @@ const App: React.FC = () => {
   return (
     <div className="App">
       <Container>
-        <Table cards={[]}/>
+        <Table cards={[]} />
       </Container>
     </div>
   );

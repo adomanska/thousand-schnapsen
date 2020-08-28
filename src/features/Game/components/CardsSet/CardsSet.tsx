@@ -22,8 +22,9 @@ interface ISelectableCardProps {
 }
 const StyledCard = styled(Card)<ISelectableCardProps>`
   margin: 5px;
-  box-shadow: 0 0 10px 5px ${({ selected }) => selected ? "lightblue" : "gray"};
-  pointer-events: ${({ active }) => active ? "auto" : "none"};
+  box-shadow: 0 0 10px 5px
+    ${({ selected }) => (selected ? "lightblue" : "gray")};
+  pointer-events: ${({ active }) => (active ? "auto" : "none")};
   ${({ selected }) => selected && "margin-top: -0.5rem;"}
 `;
 
@@ -35,34 +36,51 @@ interface ICardsSetProps {
   size?: Size;
 }
 
-export const CardsSet: React.FC<ICardsSetProps> = ({ cards, active, cardsToSelectCount, onSelect, size }) => {
+export const CardsSet: React.FC<ICardsSetProps> = ({
+  cards,
+  active,
+  cardsToSelectCount,
+  onSelect,
+  size,
+}) => {
   const [selectedCards, setSelectedCards] = useState<number[]>([]);
 
   useEffect(() => {
-    if(!active) {
+    if (!active) {
       setSelectedCards([]);
     }
   }, [active]);
 
-  const handleCardClick = useCallback((index: number) => () => {
-    if(active) {
-      if(selectedCards.includes(index)) {
-        setSelectedCards(selectedCards.filter(curIndex => curIndex !== index));
-      } else if(cardsToSelectCount && selectedCards.length < cardsToSelectCount) {
-        setSelectedCards([...selectedCards, index]);
+  const handleCardClick = useCallback(
+    (index: number) => () => {
+      if (active) {
+        if (selectedCards.includes(index)) {
+          setSelectedCards(
+            selectedCards.filter((curIndex) => curIndex !== index)
+          );
+        } else if (
+          cardsToSelectCount &&
+          selectedCards.length < cardsToSelectCount
+        ) {
+          setSelectedCards([...selectedCards, index]);
+        }
       }
-    }
-  }, [active, selectedCards, setSelectedCards]);
+    },
+    [active, selectedCards, setSelectedCards]
+  );
 
   const handleSelect = useCallback(() => {
-    if(onSelect) {
-      onSelect(selectedCards.map(index => cards[index]));
+    if (onSelect) {
+      onSelect(selectedCards.map((index) => cards[index]));
       setSelectedCards([]);
     }
   }, [onSelect, selectedCards, cards, setSelectedCards]);
 
-  const selectButtonDisabled = useMemo(() => 
-    !active || (cardsToSelectCount !== undefined && selectedCards.length < cardsToSelectCount),
+  const selectButtonDisabled = useMemo(
+    () =>
+      !active ||
+      (cardsToSelectCount !== undefined &&
+        selectedCards.length < cardsToSelectCount),
     [active, selectedCards, cardsToSelectCount]
   );
 
@@ -81,7 +99,7 @@ export const CardsSet: React.FC<ICardsSetProps> = ({ cards, active, cardsToSelec
           />
         ))}
       </CardsDiv>
-      <Button 
+      <Button
         size={size}
         disabled={selectButtonDisabled}
         onClick={handleSelect}
@@ -90,4 +108,4 @@ export const CardsSet: React.FC<ICardsSetProps> = ({ cards, active, cardsToSelec
       </Button>
     </MainDiv>
   );
-}
+};

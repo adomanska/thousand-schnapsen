@@ -27,7 +27,11 @@ interface ICardsStackProps {
   revealed?: boolean;
 }
 
-export const CardsStack: React.FC<ICardsStackProps> = ({ cards, size, revealed }) => {
+export const CardsStack: React.FC<ICardsStackProps> = ({
+  cards,
+  size,
+  revealed,
+}) => {
   const rotationStep = 0.06;
 
   return (
