@@ -2,7 +2,7 @@ import { boolean, select, withKnobs } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import React from "react";
 import { Card } from "./Card";
-import { Color, Rank } from "./types";
+import { Color, Rank, Size } from "../../utils/types";
 
 const colorOptions = {
   Clubs: Color.Clubs,
@@ -20,6 +20,12 @@ const rankOptions = {
   Ace: Rank.Ace,
 };
 
+const sizeOptions: {[key: string]: Size} = {
+  Small: "small",
+  Medium: "medium",
+  Large: "large",
+}
+
 storiesOf("Features|Game/Card", module)
   .addDecorator(withKnobs)
   .add("default", () => (
@@ -27,5 +33,6 @@ storiesOf("Features|Game/Card", module)
       color={select("Color", colorOptions, Color.Clubs)}
       rank={select("Rank", rankOptions, Rank.Nine)}
       revealed={boolean("Revealed", true)}
+      size={select("Size", sizeOptions, "small")}
     />
   ));
