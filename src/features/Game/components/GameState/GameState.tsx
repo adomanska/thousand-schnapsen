@@ -28,7 +28,7 @@ const CardsSetWithMargin = styled(CardsSet)`
 
 const mockState = {
   playerId: 1,
-  nextPlayerId: 2,
+  nextPlayerId: 1,
   playerNames: ["Opponent1", "Me", "Opponent2"],
   stack: [
     { rank: Rank.Queen, color: Color.Clubs },
@@ -58,6 +58,11 @@ export const GameState: React.FC = () => {
     [playerId]
   );
 
+  const handActive = useMemo(() => playerId === nextPlayerId, [
+    playerId,
+    nextPlayerId,
+  ]);
+
   return (
     <GameStateDiv>
       <OpponentsDiv>
@@ -73,7 +78,11 @@ export const GameState: React.FC = () => {
       <Table>
         <CardsStack cards={stack} />
       </Table>
-      <CardsSetWithMargin cards={hand} />
+      <CardsSetWithMargin
+        cards={hand}
+        active={handActive}
+        cardsToSelectCount={1}
+      />
     </GameStateDiv>
   );
 };
