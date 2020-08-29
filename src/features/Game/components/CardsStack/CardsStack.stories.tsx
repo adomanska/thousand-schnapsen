@@ -1,10 +1,13 @@
 import { select, boolean, withKnobs } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import React from "react";
-import { ICard, Color, Rank, Size } from "../../utils/types";
+import { Size } from "../../utils/types";
 import { CardsStack } from "./CardsStack";
+import { Card } from "../../models/Card";
+import { Color } from "../../models/Color";
+import { Rank } from "../../models/Rank";
 
-const cards: ICard[] = [
+const cards: Card[] = [
   {
     color: Color.Diamonds,
     rank: Rank.Nine,

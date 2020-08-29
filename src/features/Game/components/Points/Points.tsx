@@ -9,12 +9,12 @@ import {
   TableBody,
 } from "@material-ui/core";
 
-interface IPointsProps {
+interface PointsProps {
   playerNames: string[];
   points: number[];
 }
 
-export const Points: React.FC<IPointsProps> = ({ playerNames, points }) => (
+export const Points: React.FC<PointsProps> = ({ playerNames, points }) => (
   <TableContainer component={Paper}>
     <Table>
       <TableHead>

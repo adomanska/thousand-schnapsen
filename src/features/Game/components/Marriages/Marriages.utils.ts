@@ -1,5 +1,5 @@
-import { Color } from "../../utils/types";
 import { IconType } from "../../../../components/Icon/Icon";
+import { Color } from "../../models/Color";
 
 export const marriages = [
   Color.Spades,

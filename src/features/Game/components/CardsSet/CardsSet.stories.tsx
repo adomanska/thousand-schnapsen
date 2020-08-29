@@ -1,10 +1,13 @@
 import { boolean, select, withKnobs } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import React, { useState } from "react";
-import { ICard, Color, Rank, Size } from "../../utils/types";
+import { Size } from "../../utils/types";
 import { CardsSet } from "./CardsSet";
+import { Color } from "../../models/Color";
+import { Rank } from "../../models/Rank";
+import { Card } from "../../models/Card";
 
-const initialCards: ICard[] = [
+const initialCards: Card[] = [
   {
     color: Color.Diamonds,
     rank: Rank.Nine,
@@ -54,7 +57,7 @@ const sizeOptions: { [key: string]: Size } = {
 const CardsSetWrapper: React.FC = () => {
   const [cards, setCards] = useState(initialCards);
 
-  const handleSelect = (selectedCards: ICard[]) => {
+  const handleSelect = (selectedCards: Card[]) => {
     const newCards = cards.filter((card) => !selectedCards.includes(card));
     setCards(newCards);
   };

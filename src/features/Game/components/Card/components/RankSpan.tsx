@@ -7,11 +7,11 @@ const sizeFontSizeMappings = {
   large: "2rem",
 };
 
-interface IProps {
+interface RankSpanProps {
   size: Size;
 }
 
-export const RankSpan = styled.span<IProps>`
+export const RankSpan = styled.span<RankSpanProps>`
   display: flex;
   justify-content: center;
   font-size: ${({ size }) => sizeFontSizeMappings[size]};

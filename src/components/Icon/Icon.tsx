@@ -65,12 +65,12 @@ const iconsTypesMappings: IconsTypesMappings = {
   [IconType.TenSpades]: TenSpades,
 };
 
-interface IProps {
+interface IconProps {
   iconType: IconType;
   alt: string;
   className?: string;
 }
 
-export const Icon: React.FC<IProps> = ({ iconType, alt, className }) => (
+export const Icon: React.FC<IconProps> = ({ iconType, alt, className }) => (
   <img src={iconsTypesMappings[iconType]} alt={alt} className={className} />
 );

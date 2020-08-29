@@ -2,7 +2,9 @@ import { boolean, select, withKnobs } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import React from "react";
 import { Card } from "./Card";
-import { Color, Rank, Size } from "../../utils/types";
+import { Size } from "../../utils/types";
+import { Color } from "../../models/Color";
+import { Rank } from "../../models/Rank";
 
 const colorOptions = {
   Clubs: Color.Clubs,

@@ -5,8 +5,7 @@ import {
   colorsIconTypesMapping,
   ranksColorsIconTypesMapping,
   ranksSymbolsMapping,
-} from "./Card.mappings";
-import { Color, Rank } from "../../utils/types";
+} from "./Card.utils";
 import {
   CardDiv,
   CardBack,
@@ -14,6 +13,8 @@ import {
   SideColumn,
   RankSpan,
 } from "./components";
+import { Color } from "../../models/Color";
+import { Rank } from "../../models/Rank";
 
 const MiddleColumn = styled(CardColumn)`
   justify-content: center;
@@ -24,7 +25,7 @@ const StyledIcon = styled(Icon)`
   height: auto;
 `;
 
-interface IProps {
+interface CardProps {
   color: Color;
   rank: Rank;
   size?: "small" | "medium" | "large";
@@ -33,7 +34,7 @@ interface IProps {
   revealed?: boolean;
 }
 
-export const Card: React.FC<IProps> = ({
+export const Card: React.FC<CardProps> = ({
   color,
   rank,
   className,
