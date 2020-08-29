@@ -18,7 +18,7 @@ const ContentDiv = styled.div`
   height: calc(100% - 64px);
 `;
 
-const GameSateDiv = styled.div`
+const GameStateDiv = styled.div`
   padding: 10rem;
   display: flex;
   width: 100%;
@@ -37,7 +37,7 @@ export const MainPage: React.FC = () => {
       </AppBar>
       <ContentDiv>
         <InfoSideBar />
-        <GameSateDiv>
+        <GameStateDiv>
           <Table>
             <CardsStack
               cards={[
@@ -47,7 +47,7 @@ export const MainPage: React.FC = () => {
               size="medium"
             />
           </Table>
-        </GameSateDiv>
+        </GameStateDiv>
       </ContentDiv>
     </>
   );
