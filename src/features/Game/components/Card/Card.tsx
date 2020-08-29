@@ -5,8 +5,7 @@ import {
   colorsIconTypesMapping,
   ranksColorsIconTypesMapping,
   ranksSymbolsMapping,
-} from "./Card.mappings";
-import { Color, Rank } from "../../utils/types";
+} from "./Card.utils";
 import {
   CardDiv,
   CardBack,
@@ -14,6 +13,8 @@ import {
   SideColumn,
   RankSpan,
 } from "./components";
+import { Color } from "../../models/Color";
+import { Rank } from "../../models/Rank";
 
 const MiddleColumn = styled(CardColumn)`
   justify-content: center;

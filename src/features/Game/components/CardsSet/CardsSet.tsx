@@ -2,7 +2,8 @@ import Button from "@material-ui/core/Button";
 import React, { useCallback, useEffect, useState, useMemo } from "react";
 import styled from "styled-components";
 import { Card } from "../Card/Card";
-import { CardFE, Size } from "../../utils/types";
+import { Size } from "../../utils/types";
+import { Card as CardModel } from "../../models/Card";
 
 const MainDiv = styled.div`
   display: flex;
@@ -29,10 +30,10 @@ const StyledCard = styled(Card)<StyledCardProps>`
 `;
 
 interface CardsSetProps {
-  cards: CardFE[];
+  cards: CardModel[];
   active?: boolean;
   cardsToSelectCount?: number;
-  onSelect?: (cards: CardFE[]) => void;
+  onSelect?: (cards: CardModel[]) => void;
   size?: Size;
 }
 

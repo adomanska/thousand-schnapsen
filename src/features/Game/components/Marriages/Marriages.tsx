@@ -1,8 +1,8 @@
 import React, { useCallback } from "react";
-import { Color } from "../../utils/types";
 import styled from "styled-components";
 import { Icon } from "../../../../components/Icon/Icon";
 import { marriages, marriageIconMappings } from "./Marriages.utils";
+import { Color } from "../../models/Color";
 
 interface MarriageProps {
   active: boolean;

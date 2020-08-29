@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { Card } from "../Card";
-import { CardFE, Size } from "../../utils/types";
+import { Size } from "../../utils/types";
+import { Card as CardModel } from "../../models/Card";
 
 const CardsStackDiv = styled.div`
   pointer-events: none;
@@ -22,7 +23,7 @@ const RotatedCard = styled(Card)<RotatedCardProps>`
 `;
 
 interface CardsStackProps {
-  cards: CardFE[];
+  cards: CardModel[];
   size?: Size;
   revealed?: boolean;
 }
