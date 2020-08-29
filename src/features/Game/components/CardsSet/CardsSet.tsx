@@ -35,6 +35,7 @@ interface CardsSetProps {
   cardsToSelectCount?: number;
   onSelect?: (cards: CardModel[]) => void;
   size?: Size;
+  className?: string;
 }
 
 export const CardsSet: React.FC<CardsSetProps> = ({
@@ -43,6 +44,7 @@ export const CardsSet: React.FC<CardsSetProps> = ({
   cardsToSelectCount,
   onSelect,
   size,
+  className
 }) => {
   const [selectedCards, setSelectedCards] = useState<number[]>([]);
 
@@ -67,7 +69,7 @@ export const CardsSet: React.FC<CardsSetProps> = ({
         }
       }
     },
-    [active, selectedCards, setSelectedCards]
+    [active, selectedCards, setSelectedCards, cardsToSelectCount]
   );
 
   const handleSelect = useCallback(() => {
@@ -86,7 +88,7 @@ export const CardsSet: React.FC<CardsSetProps> = ({
   );
 
   return (
-    <MainDiv>
+    <MainDiv className={className}>
       <CardsDiv>
         {cards.map(({ rank, color }, index) => (
           <StyledCard

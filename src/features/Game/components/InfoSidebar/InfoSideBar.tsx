@@ -8,7 +8,7 @@ import { Button, Paper } from "@material-ui/core";
 const Drawer = styled(Paper)`
   width: min-content;
   margin: 0.5rem;
-  padding: 2rem;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
 
@@ -41,14 +41,14 @@ export const InfoSideBar: React.FC = () => {
   return (
     <Drawer>
       <DrawerItem>
-        <DrawerItemHeader>Marriages</DrawerItemHeader>
+        <DrawerItemHeader>MARRIAGES</DrawerItemHeader>
         <Marriages
           usedMariages={usedMariages}
           activeMarriage={activeMarriage}
         />
       </DrawerItem>
       <DrawerItem>
-        <DrawerItemHeader>Points</DrawerItemHeader>
+        <DrawerItemHeader>POINTS</DrawerItemHeader>
         <Points playerNames={playerNames} points={points} />
       </DrawerItem>
       <DrawerItem>

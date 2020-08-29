@@ -9,7 +9,8 @@ const TableDiv = styled.div`
   justify-content: center;
   box-shadow: 0 0 1rem 1rem gray;
   align-items: center;
-  width: 100%;
+  width: calc(100% - 4rem);
+  height: -webkit-fill-available;
 `;
 
 export const Table: React.FC = ({ children }) => (
