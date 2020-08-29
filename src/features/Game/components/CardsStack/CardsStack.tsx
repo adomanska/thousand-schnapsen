@@ -33,7 +33,7 @@ export const CardsStack: React.FC<CardsStackProps> = ({
   size,
   revealed,
 }) => {
-  const rotationStep = 0.06;
+  const rotationStep = 0.08;
 
   return (
     <CardsStackDiv>
