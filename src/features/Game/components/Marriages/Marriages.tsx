@@ -10,11 +10,11 @@ interface MarriageProps {
 }
 
 const Marriage = styled(Icon)<MarriageProps>`
-  width: 21%;
+  width: 15%;
   opacity: ${({ active }) => (active ? 100 : 15)}%;
-  ${({ selected }) => selected && "background: lightblue;"}
+  ${({ selected }) => selected && "background: #3f51b5;"}
   border-radius: 10%;
-  padding: 2%;
+  padding: 5%;
 `;
 
 const MainDiv = styled.div`

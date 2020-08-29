@@ -1,14 +1,11 @@
 import React from "react";
 import "./App.css";
-import { Container } from "@material-ui/core";
-import { Table } from "./features/Game/components/Table/Table";
+import { MainPage } from "./features/Game/components/MainPage/MainPage";
 
 const App: React.FC = () => {
   return (
     <div className="App">
-      <Container>
-        <Table />
-      </Container>
+      <MainPage />
     </div>
   );
 };

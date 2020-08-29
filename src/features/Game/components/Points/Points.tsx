@@ -1,7 +1,6 @@
 import React from "react";
 import {
   TableContainer,
-  Paper,
   Table,
   TableHead,
   TableRow,
@@ -15,7 +14,7 @@ interface PointsProps {
 }
 
 export const Points: React.FC<PointsProps> = ({ playerNames, points }) => (
-  <TableContainer component={Paper}>
+  <TableContainer>
     <Table>
       <TableHead>
         <TableRow>
