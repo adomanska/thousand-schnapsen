@@ -9,48 +9,46 @@ import { Rank } from "../../models/Rank";
 import { Color } from "../../models/Color";
 
 const TitleDiv = styled.div`
-    font-size: 1.5rem;
-    margin-left: 1rem;
-`
+  font-size: 1.5rem;
+  margin-left: 1rem;
+`;
 
 const ContentDiv = styled.div`
-    display: flex;
-    height: calc(100% - 64px);
+  display: flex;
+  height: calc(100% - 64px);
 `;
 
 const GameSateDiv = styled.div`
-    padding: 10rem;
-    display: flex;
-    width: 100%;
+  padding: 10rem;
+  display: flex;
+  width: 100%;
 `;
 
 export const MainPage: React.FC = () => {
-    return (
-        <>
-            <AppBar position="sticky">
-                <Toolbar>
-                    <GamesSharp/>
-                    <Typography>
-                        <TitleDiv>
-                            Thousand Schnapsen
-                        </TitleDiv>
-                    </Typography>
-                </Toolbar>
-            </AppBar>
-            <ContentDiv>
-                <InfoSideBar/>
-                <GameSateDiv>
-                    <Table>
-                        <CardsStack
-                            cards={[
-                                { rank: Rank.Queen, color: Color.Clubs },
-                                { rank: Rank.Jack, color: Color.Diamonds },
-                            ]}
-                            size="medium"
-                        />
-                    </Table>
-                </GameSateDiv>
-            </ContentDiv>
-        </>
-    )
+  return (
+    <>
+      <AppBar position="sticky">
+        <Toolbar>
+          <GamesSharp />
+          <Typography>
+            <TitleDiv>Thousand Schnapsen</TitleDiv>
+          </Typography>
+        </Toolbar>
+      </AppBar>
+      <ContentDiv>
+        <InfoSideBar />
+        <GameSateDiv>
+          <Table>
+            <CardsStack
+              cards={[
+                { rank: Rank.Queen, color: Color.Clubs },
+                { rank: Rank.Jack, color: Color.Diamonds },
+              ]}
+              size="medium"
+            />
+          </Table>
+        </GameSateDiv>
+      </ContentDiv>
+    </>
+  );
 };
