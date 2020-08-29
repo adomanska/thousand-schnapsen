@@ -1,10 +1,10 @@
 import { storiesOf } from "@storybook/react";
 import React from "react";
-import { ICard, Color, Rank } from "../../utils/types";
+import { CardFE, Color, Rank } from "../../utils/types";
 import { Table } from "./Table";
 import { CardsStack } from "../CardsStack";
 
-const cards: ICard[] = [
+const cards: CardFE[] = [
   {
     color: Color.Diamonds,
     rank: Rank.Nine,

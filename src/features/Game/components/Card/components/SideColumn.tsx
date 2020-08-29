@@ -8,11 +8,11 @@ const sizePaddingMappings = {
   large: "0.4rem",
 };
 
-interface IProps {
+interface SideColumnProps {
   size: Size;
 }
 
-export const SideColumn = styled(CardColumn)<IProps>`
+export const SideColumn = styled(CardColumn)<SideColumnProps>`
   flex-direction: column;
   justify-content: flex-start;
   -moz-box-sizing: border-box;

@@ -18,11 +18,11 @@ export const sizeRadiusMappings = {
   large: "1rem",
 };
 
-interface ICardDiv {
+interface CardDivProps {
   size: "small" | "medium" | "large";
 }
 
-export const CardDiv = styled.div<ICardDiv>`
+export const CardDiv = styled.div<CardDivProps>`
   background: white;
   border-radius: ${({ size }) => sizeRadiusMappings[size]};
   box-shadow: 0 0 10px 5px gray;

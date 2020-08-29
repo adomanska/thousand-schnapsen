@@ -4,12 +4,12 @@ import styled from "styled-components";
 import { Icon } from "../../../../components/Icon/Icon";
 import { marriages, marriageIconMappings } from "./Marriages.utils";
 
-interface IMarriageProps {
+interface MarriageProps {
   active: boolean;
   selected: boolean;
 }
 
-const Marriage = styled(Icon)<IMarriageProps>`
+const Marriage = styled(Icon)<MarriageProps>`
   width: 21%;
   opacity: ${({ active }) => (active ? 100 : 15)}%;
   ${({ selected }) => selected && "background: lightblue;"}
@@ -21,12 +21,12 @@ const MainDiv = styled.div`
   display: flex;
 `;
 
-interface IMarriagesProps {
+interface MarriagesProps {
   usedMariages: Color[];
   activeMarriage?: Color;
 }
 
-export const Marriages: React.FC<IMarriagesProps> = ({
+export const Marriages: React.FC<MarriagesProps> = ({
   usedMariages,
   activeMarriage,
 }) => {

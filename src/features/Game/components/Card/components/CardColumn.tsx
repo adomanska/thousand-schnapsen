@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
-interface ICardColumn {
+interface CardColumnProps {
   width: number; // in percents
   rotation?: number; // in turns
 }
 
-export const CardColumn = styled.div<ICardColumn>`
+export const CardColumn = styled.div<CardColumnProps>`
   width: ${({ width }) => width}%;
   float: left;
   height: 100%;

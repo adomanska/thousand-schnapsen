@@ -8,11 +8,11 @@ const sizePaddingMappings = {
   large: "1rem",
 };
 
-interface IProps {
+interface CardBackProps {
   size: Size;
 }
 
-export const CardBack = styled(Icon)<IProps>`
+export const CardBack = styled(Icon)<CardBackProps>`
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;

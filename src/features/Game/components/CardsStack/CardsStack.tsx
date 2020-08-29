@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Card } from "../Card";
-import { ICard, Size } from "../../utils/types";
+import { CardFE, Size } from "../../utils/types";
 
 const CardsStackDiv = styled.div`
   pointer-events: none;
@@ -10,24 +10,24 @@ const CardsStackDiv = styled.div`
   padding: 3rem;
 `;
 
-interface IRotatedCardProps {
+interface RotatedCardProps {
   rotation?: number; // in turns
 }
 
-const RotatedCard = styled(Card)<IRotatedCardProps>`
+const RotatedCard = styled(Card)<RotatedCardProps>`
   transform: ${({ rotation }) =>
     rotation ? `rotate(${rotation}turn)` : undefined};
   grid-column: 1;
   grid-row: 1;
 `;
 
-interface ICardsStackProps {
-  cards: ICard[];
+interface CardsStackProps {
+  cards: CardFE[];
   size?: Size;
   revealed?: boolean;
 }
 
-export const CardsStack: React.FC<ICardsStackProps> = ({
+export const CardsStack: React.FC<CardsStackProps> = ({
   cards,
   size,
   revealed,

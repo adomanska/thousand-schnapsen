@@ -24,7 +24,7 @@ const StyledIcon = styled(Icon)`
   height: auto;
 `;
 
-interface IProps {
+interface CardProps {
   color: Color;
   rank: Rank;
   size?: "small" | "medium" | "large";
@@ -33,7 +33,7 @@ interface IProps {
   revealed?: boolean;
 }
 
-export const Card: React.FC<IProps> = ({
+export const Card: React.FC<CardProps> = ({
   color,
   rank,
   className,

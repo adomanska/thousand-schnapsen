@@ -14,7 +14,7 @@ export enum Rank {
   Ace,
 }
 
-export interface ICard {
+export interface CardFE {
   rank: Rank;
   color: Color;
 }

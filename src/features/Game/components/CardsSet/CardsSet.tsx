@@ -2,7 +2,7 @@ import Button from "@material-ui/core/Button";
 import React, { useCallback, useEffect, useState, useMemo } from "react";
 import styled from "styled-components";
 import { Card } from "../Card/Card";
-import { ICard, Size } from "../../utils/types";
+import { CardFE, Size } from "../../utils/types";
 
 const MainDiv = styled.div`
   display: flex;
@@ -16,11 +16,11 @@ const CardsDiv = styled.div`
   margin-bottom: 1rem;
 `;
 
-interface ISelectableCardProps {
+interface StyledCardProps {
   active?: boolean;
   selected?: boolean;
 }
-const StyledCard = styled(Card)<ISelectableCardProps>`
+const StyledCard = styled(Card)<StyledCardProps>`
   margin: 5px;
   box-shadow: 0 0 10px 5px
     ${({ selected }) => (selected ? "lightblue" : "gray")};
@@ -28,15 +28,15 @@ const StyledCard = styled(Card)<ISelectableCardProps>`
   ${({ selected }) => selected && "margin-top: -0.5rem;"}
 `;
 
-interface ICardsSetProps {
-  cards: ICard[];
+interface CardsSetProps {
+  cards: CardFE[];
   active?: boolean;
   cardsToSelectCount?: number;
-  onSelect?: (cards: ICard[]) => void;
+  onSelect?: (cards: CardFE[]) => void;
   size?: Size;
 }
 
-export const CardsSet: React.FC<ICardsSetProps> = ({
+export const CardsSet: React.FC<CardsSetProps> = ({
   cards,
   active,
   cardsToSelectCount,
