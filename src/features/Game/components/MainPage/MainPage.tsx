@@ -35,7 +35,7 @@ export const MainPage: React.FC = () => {
       <ContentDiv>
         <InfoSideBar />
         <GameStateDiv>
-            <GameState />
+          <GameState />
         </GameStateDiv>
       </ContentDiv>
     </>

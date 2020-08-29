@@ -44,7 +44,7 @@ export const CardsSet: React.FC<CardsSetProps> = ({
   cardsToSelectCount,
   onSelect,
   size,
-  className
+  className,
 }) => {
   const [selectedCards, setSelectedCards] = useState<number[]>([]);
 
