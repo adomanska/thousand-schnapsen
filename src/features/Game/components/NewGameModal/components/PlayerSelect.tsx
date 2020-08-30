@@ -48,11 +48,11 @@ export const PlayerSelect: React.FC<PlayerSelectProps> = ({ value, onChange, lab
         <Select
           value={value || ""}
           onChange={handleChange}
-          onTouchEnd={onTouch}
+          onClick={onTouch}
         >
           {options}
         </Select>
-        <FormHelperText>{error}</FormHelperText>
+        <FormHelperText>{error || " "}</FormHelperText>
       </FormControl>
   )
 };

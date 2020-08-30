@@ -1,9 +1,10 @@
 import React, { useState, useCallback, useMemo, useEffect } from "react";
 import { Dialog, DialogTitle, DialogContent, DialogActions, Button, DialogContentText } from "@material-ui/core";
 import { PlayersSetup } from "../../models/PlayersSetup";
-import { PlayerSelect } from "./components";
+import { PlayerSelect, Error } from "./components";
 import { PlayerType } from "../../models/PlayerType";
 import styled from "styled-components";
+import { PlayersSetupTouched, isFormValid, initialPlayersSetup } from "./NewGameModal.utils";
 
 const FormDiv = styled.div`
   display: flex;
@@ -14,23 +15,20 @@ const FormDiv = styled.div`
   & > * {
     margin-top: 0.5rem;
   }
-`; 
-
-type PlayersSetupTouched = {
-  [key in keyof PlayersSetup]: boolean;
-}
+`;
 
 interface NewGameModalProps {
   open: boolean;
   onClose: () => void;
-  onSubmit: () => void;
+  onSubmit: (values: PlayersSetup) => void;
 }
 
 export const NewGameModal: React.FC<NewGameModalProps> = ({open, onClose, onSubmit}) => {
-  const [formValues, setFormValues] = useState<Partial<PlayersSetup>>({});
+  const [formValues, setFormValues] = useState<Partial<PlayersSetup>>(initialPlayersSetup);
   const [touched, setTouched] = useState<Partial<PlayersSetupTouched>>({});
+  const [error, setError] = useState<string>();
 
-  const onFieldChange = useCallback((index: number) => (value: PlayerType) => 
+  const onFieldChange = useCallback((index: number) => (value: PlayerType) =>
     setFormValues({
       ...formValues,
       [index]: value
@@ -51,9 +49,20 @@ export const NewGameModal: React.FC<NewGameModalProps> = ({open, onClose, onSubm
     [formValues]
   );
 
+  const getError = useCallback((index: number) =>
+    (touched[index] && !formValues[index]) ? "Please select player type" : undefined,
+    [touched, formValues]
+  );
+
+  const handleSubmit = useCallback(() => {
+    if(isFormValid(formValues, setError)) {
+      onSubmit(formValues);
+    }
+  }, [formValues, setError, onSubmit]);
+
   useEffect(() => {
     if(open) {
-      setFormValues({});
+      setFormValues(initialPlayersSetup);
       setTouched({});
     }
   }, [open])
@@ -76,15 +85,17 @@ export const NewGameModal: React.FC<NewGameModalProps> = ({open, onClose, onSubm
               onChange={onFieldChange(index)}
               onTouch={onFieldTouched(index)}
               isHumanAssigned={isHumanAssigned}
+              error={getError(index)}
             />
           ))}
         </FormDiv>
+        <Error message={error}/>
       </DialogContent>
       <DialogActions>
         <Button onClick={onClose} color="primary">
           Cancel
         </Button>
-        <Button onClick={onSubmit} color="primary">
+        <Button onClick={handleSubmit} color="primary">
           Initialize
         </Button>
       </DialogActions>
