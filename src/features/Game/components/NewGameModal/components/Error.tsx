@@ -6,7 +6,5 @@ interface ErrorProps {
 }
 
 export const Error: React.FC<ErrorProps> = ({ message }) => (
-  <FormHelperText error={true}>
-      {message || " "}
-  </FormHelperText>
+  <FormHelperText error={true}>{message || " "}</FormHelperText>
 );

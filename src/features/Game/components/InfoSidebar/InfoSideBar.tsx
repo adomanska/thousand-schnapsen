@@ -40,20 +40,19 @@ export const InfoSideBar: React.FC = () => {
   const { usedMariages, activeMarriage, playerNames, points } = mockData; // TODO: Replace mock data with data fetched from redux store
   const [newGameModalOpen, setNewGameModalOpen] = useState(false);
 
-  const handleNewGameButtonClick = useCallback(() =>
-    setNewGameModalOpen(true),
+  const handleNewGameButtonClick = useCallback(
+    () => setNewGameModalOpen(true),
     [setNewGameModalOpen]
   );
 
-  const handleNewGameModalClose = useCallback(() => 
-    setNewGameModalOpen(false),
+  const handleNewGameModalClose = useCallback(
+    () => setNewGameModalOpen(false),
     [setNewGameModalOpen]
   );
 
-  const initializeNewGame = useCallback(() => 
-    setNewGameModalOpen(false),
-    [setNewGameModalOpen]
-  );
+  const initializeNewGame = useCallback(() => setNewGameModalOpen(false), [
+    setNewGameModalOpen,
+  ]);
 
   return (
     <>
@@ -70,7 +69,11 @@ export const InfoSideBar: React.FC = () => {
           <Points playerNames={playerNames} points={points} />
         </DrawerItem>
         <DrawerItem>
-          <Button variant="contained" color="secondary" onClick={handleNewGameButtonClick}>
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={handleNewGameButtonClick}
+          >
             New game
           </Button>
         </DrawerItem>
