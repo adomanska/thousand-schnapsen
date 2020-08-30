@@ -61,11 +61,12 @@ export const GameStateContainer: React.FC<GameStateContainerProps> = ({
     nextPlayerId,
   ]);
 
-  const handleCardsSelect = useCallback((cards: Card[]) =>
-    performAction({
-      playerId,
-      card: cards[0]
-    }),
+  const handleCardsSelect = useCallback(
+    (cards: Card[]) =>
+      performAction({
+        playerId,
+        card: cards[0],
+      }),
     [performAction, playerId]
   );
 

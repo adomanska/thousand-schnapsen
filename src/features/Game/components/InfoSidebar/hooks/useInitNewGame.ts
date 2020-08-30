@@ -5,15 +5,14 @@ import { useAxiosRequest } from "../../../utils/useAxiosRequest";
 export const useInitNewGame = () => {
   const { makeRequest, ...rest } = useAxiosRequest("game", "post");
 
-  const initNewGame = useCallback((data: PlayersSetup) => 
-    makeRequest(data),
-    [makeRequest]
-  );
+  const initNewGame = useCallback((data: PlayersSetup) => makeRequest(data), [
+    makeRequest,
+  ]);
 
   return useMemo(
     () => ({
       initNewGame,
-      ...rest
+      ...rest,
     }),
     [initNewGame, rest]
   );

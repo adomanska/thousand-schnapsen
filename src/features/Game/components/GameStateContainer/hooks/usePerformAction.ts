@@ -5,15 +5,14 @@ import { Action } from "../../../models/Action";
 export const usePerformAction = () => {
   const { makeRequest, ...rest } = useAxiosRequest("game", "put");
 
-  const performAction = useCallback((data: Action) => 
-    makeRequest(data),
-    [makeRequest]
-  );
+  const performAction = useCallback((data: Action) => makeRequest(data), [
+    makeRequest,
+  ]);
 
   return useMemo(
     () => ({
       performAction,
-      ...rest
+      ...rest,
     }),
     [performAction, rest]
   );

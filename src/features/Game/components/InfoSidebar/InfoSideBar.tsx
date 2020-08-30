@@ -2,7 +2,7 @@ import React, { useState, useCallback } from "react";
 import styled from "styled-components";
 import { Marriages } from "../Marriages";
 import { Points } from "../Points";
-import { Button, Paper, Backdrop, CircularProgress } from "@material-ui/core";
+import { Button, Paper } from "@material-ui/core";
 import { NewGameModal } from "../NewGameModal";
 import { Error } from "../../../../components/Error";
 import { useInitNewGame } from "./hooks";

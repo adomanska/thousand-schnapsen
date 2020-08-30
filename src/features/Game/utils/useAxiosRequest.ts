@@ -15,7 +15,7 @@ export const useAxiosRequest = (url: string, method: Method) => {
         url: completeUrl,
         baseURL: apiUrl,
         method,
-        data
+        data,
       };
       Axios.request(config)
         .then(() => setIsLoading(false))
@@ -24,7 +24,7 @@ export const useAxiosRequest = (url: string, method: Method) => {
           setIsLoading(false);
         });
     },
-    [setIsLoading, apiUrl, url, setIsError]
+    [setIsLoading, apiUrl, url, setIsError, method]
   );
 
   const closeError = useCallback(() => setIsError(false), [setIsError]);
@@ -38,4 +38,4 @@ export const useAxiosRequest = (url: string, method: Method) => {
     }),
     [makeRequest, isLoading, isError, closeError]
   );
-}
+};
