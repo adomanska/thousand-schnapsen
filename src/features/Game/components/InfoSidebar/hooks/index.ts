@@ -1,0 +1,1 @@
+export { useInitNewGame } from "./useInitNewGame";

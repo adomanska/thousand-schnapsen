@@ -3,7 +3,8 @@ import { AppBar, Toolbar, Typography } from "@material-ui/core";
 import { GamesSharp } from "@material-ui/icons";
 import styled from "styled-components";
 import { InfoSideBar } from "../InfoSidebar";
-import { GameState } from "../GameState";
+import { GameStateContainer } from "../GameStateContainer";
+import { defaultGameState } from "../../models/GameState";
 
 const TitleDiv = styled.div`
   font-size: 1.5rem;
@@ -13,12 +14,6 @@ const TitleDiv = styled.div`
 const ContentDiv = styled.div`
   display: flex;
   height: calc(100% - 64px);
-`;
-
-const GameStateDiv = styled.div`
-  padding: 2rem;
-  display: flex;
-  width: 100%;
 `;
 
 export const MainPage: React.FC = () => {
@@ -33,10 +28,8 @@ export const MainPage: React.FC = () => {
         </Toolbar>
       </AppBar>
       <ContentDiv>
-        <InfoSideBar />
-        <GameStateDiv>
-          <GameState />
-        </GameStateDiv>
+        <InfoSideBar data={defaultGameState} />
+        <GameStateContainer data={defaultGameState} />
       </ContentDiv>
     </>
   );

@@ -1,13 +1,16 @@
 import React, { useState, useCallback } from "react";
 import styled from "styled-components";
-import { Color } from "../../models/Color";
 import { Marriages } from "../Marriages";
 import { Points } from "../Points";
-import { Button, Paper } from "@material-ui/core";
+import { Button, Paper, Backdrop, CircularProgress } from "@material-ui/core";
 import { NewGameModal } from "../NewGameModal";
+import { Error } from "./components";
+import { useInitNewGame } from "./hooks";
+import { PlayersSetup } from "../../models/PlayersSetup";
+import { GameState } from "../../models/GameState";
 
 const Drawer = styled(Paper)`
-  width: min-content;
+  width: 15%;
   margin: 0.5rem;
   padding: 1rem;
   display: flex;
@@ -27,18 +30,26 @@ const DrawerItemHeader = styled.span`
 const DrawerItem = styled.div`
   display: flex;
   flex-direction: column;
+
+  &:last-child {
+    height: 100%;
+    display: flex;
+    flex-direction: column-reverse;
+  }
 `;
 
-const mockData = {
-  usedMariages: [Color.Spades, Color.Diamonds],
-  activeMarriage: Color.Diamonds,
-  playerNames: ["Opponent1", "Me", "Opponent2"],
-  points: [40, 120, 60],
-};
+const StyledBackdrop = styled(Backdrop)`
+  z-index: 100;
+`;
 
-export const InfoSideBar: React.FC = () => {
-  const { usedMariages, activeMarriage, playerNames, points } = mockData; // TODO: Replace mock data with data fetched from redux store
+interface InfoSideBarProps {
+  data: GameState;
+}
+
+export const InfoSideBar: React.FC<InfoSideBarProps> = ({ data }) => {
+  const { usedMarriages, activeMarriage, playerNames, points } = data;
   const [newGameModalOpen, setNewGameModalOpen] = useState(false);
+  const { initNewGame, isLoading, isError, closeError } = useInitNewGame();
 
   const handleNewGameButtonClick = useCallback(
     () => setNewGameModalOpen(true),
@@ -50,9 +61,13 @@ export const InfoSideBar: React.FC = () => {
     [setNewGameModalOpen]
   );
 
-  const initializeNewGame = useCallback(() => setNewGameModalOpen(false), [
-    setNewGameModalOpen,
-  ]);
+  const initializeNewGame = useCallback(
+    (playersSetup: PlayersSetup) => {
+      initNewGame(playersSetup);
+      setNewGameModalOpen(false);
+    },
+    [initNewGame, setNewGameModalOpen]
+  );
 
   return (
     <>
@@ -60,7 +75,7 @@ export const InfoSideBar: React.FC = () => {
         <DrawerItem>
           <DrawerItemHeader>MARRIAGES</DrawerItemHeader>
           <Marriages
-            usedMariages={usedMariages}
+            usedMariages={usedMarriages}
             activeMarriage={activeMarriage}
           />
         </DrawerItem>
@@ -82,6 +97,14 @@ export const InfoSideBar: React.FC = () => {
         open={newGameModalOpen}
         onClose={handleNewGameModalClose}
         onSubmit={initializeNewGame}
+      />
+      <StyledBackdrop open={isLoading}>
+        <CircularProgress />
+      </StyledBackdrop>
+      <Error
+        open={isError}
+        message={"Game initialization failed. Please try again."}
+        onClose={closeError}
       />
     </>
   );
