@@ -25,9 +25,7 @@ export const mockGameState: GameState = {
     { rank: Rank.Ace, color: Color.Clubs },
     { rank: Rank.King, color: Color.Diamonds },
   ],
-  points: [
-      40, 120, 60
-  ],
+  points: [40, 120, 60],
   usedMarriages: [Color.Diamonds, Color.Spades],
   activeMarriage: Color.Diamonds,
   gameOver: false,

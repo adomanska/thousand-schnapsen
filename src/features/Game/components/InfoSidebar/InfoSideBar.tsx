@@ -61,7 +61,8 @@ export const InfoSideBar: React.FC<InfoSideBarProps> = ({ data }) => {
     [setNewGameModalOpen]
   );
 
-  const initializeNewGame = useCallback((playersSetup: PlayersSetup) => {
+  const initializeNewGame = useCallback(
+    (playersSetup: PlayersSetup) => {
       initNewGame(playersSetup);
       setNewGameModalOpen(false);
     },
@@ -80,10 +81,7 @@ export const InfoSideBar: React.FC<InfoSideBarProps> = ({ data }) => {
         </DrawerItem>
         <DrawerItem>
           <DrawerItemHeader>POINTS</DrawerItemHeader>
-          <Points 
-            playerNames={playerNames} 
-            points={points} 
-          />
+          <Points playerNames={playerNames} points={points} />
         </DrawerItem>
         <DrawerItem>
           <Button

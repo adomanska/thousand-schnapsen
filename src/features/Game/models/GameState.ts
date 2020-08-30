@@ -14,13 +14,13 @@ export interface GameState {
   gameOver: boolean;
 }
 
-export const defaultGameState: GameState  = {
+export const defaultGameState: GameState = {
   stack: [],
   hand: [],
   nextPlayerId: 0,
   playerId: 0,
-  playerNames: ['-', '-', '-'],
+  playerNames: ["-", "-", "-"],
   points: [0, 0, 0],
   usedMarriages: [],
-  gameOver: false
+  gameOver: false,
 };
