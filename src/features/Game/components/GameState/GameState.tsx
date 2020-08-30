@@ -48,12 +48,19 @@ const mockState = {
     { rank: Rank.King, color: Color.Clubs },
     { rank: Rank.Ace, color: Color.Clubs },
     { rank: Rank.King, color: Color.Diamonds },
-  ]
+  ],
 };
 
 export const GameState: React.FC = () => {
   const playersCount = 3;
-  const { playerId, nextPlayerId, playerNames, stack, hand, availableActions } = mockState; // TODO: Replace with state fetched from redux store
+  const {
+    playerId,
+    nextPlayerId,
+    playerNames,
+    stack,
+    hand,
+    availableActions,
+  } = mockState; // TODO: Replace with state fetched from redux store
 
   const opponentsIds = useMemo(
     () =>

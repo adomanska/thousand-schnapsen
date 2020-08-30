@@ -24,9 +24,10 @@ interface StyledCardProps {
 }
 const StyledCard = styled(Card)<StyledCardProps>`
   margin: 0.5rem;
-  pointer-events: ${({ active, disabled }) => ((active && !disabled) ? "auto" : "none")};
+  pointer-events: ${({ active, disabled }) =>
+    active && !disabled ? "auto" : "none"};
   ${({ selected }) => selected && "margin-top: -0.75rem;"}
-  ${({ active, disabled }) => (active && disabled) && "opacity: 0.2;"}
+  ${({ active, disabled }) => active && disabled && "opacity: 0.2;"}
 `;
 
 interface CardsSetProps {
@@ -60,10 +61,12 @@ export const CardsSet: React.FC<CardsSetProps> = ({
     (card: CardModel) => () => {
       if (active) {
         if (selectedCards.includes(card)) {
-          setSelectedCards(
-            selectedCards.filter((curCard) => curCard !== card)
-          );
-        } else if (cardsToSelectCount && cardsToSelectCount > 1 && selectedCards.length < cardsToSelectCount) {
+          setSelectedCards(selectedCards.filter((curCard) => curCard !== card));
+        } else if (
+          cardsToSelectCount &&
+          cardsToSelectCount > 1 &&
+          selectedCards.length < cardsToSelectCount
+        ) {
           setSelectedCards([...selectedCards, card]);
         } else if (cardsToSelectCount === 1) {
           setSelectedCards([card]);
@@ -88,13 +91,17 @@ export const CardsSet: React.FC<CardsSetProps> = ({
     [active, selectedCards, cardsToSelectCount]
   );
 
-  const isSelected = useCallback((card: CardModel) => 
-    selectedCards.includes(card),
+  const isSelected = useCallback(
+    (card: CardModel) => selectedCards.includes(card),
     [selectedCards]
   );
 
-  const isDisabled = useCallback((card: CardModel) =>
-    availableCards && !availableCards.some(({rank, color}) => card.color === color && card.rank === rank),
+  const isDisabled = useCallback(
+    (card: CardModel) =>
+      availableCards &&
+      !availableCards.some(
+        ({ rank, color }) => card.color === color && card.rank === rank
+      ),
     [availableCards]
   );
 
