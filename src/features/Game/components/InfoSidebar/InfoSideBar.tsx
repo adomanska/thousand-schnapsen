@@ -4,10 +4,11 @@ import { Marriages } from "../Marriages";
 import { Points } from "../Points";
 import { Button, Paper, Backdrop, CircularProgress } from "@material-ui/core";
 import { NewGameModal } from "../NewGameModal";
-import { Error } from "./components";
+import { Error } from "../../../../components/Error";
 import { useInitNewGame } from "./hooks";
 import { PlayersSetup } from "../../models/PlayersSetup";
 import { GameState } from "../../models/GameState";
+import { Loader } from "../../../../components/Loader";
 
 const Drawer = styled(Paper)`
   width: 15%;
@@ -36,10 +37,6 @@ const DrawerItem = styled.div`
     display: flex;
     flex-direction: column-reverse;
   }
-`;
-
-const StyledBackdrop = styled(Backdrop)`
-  z-index: 100;
 `;
 
 interface InfoSideBarProps {
@@ -98,9 +95,7 @@ export const InfoSideBar: React.FC<InfoSideBarProps> = ({ data }) => {
         onClose={handleNewGameModalClose}
         onSubmit={initializeNewGame}
       />
-      <StyledBackdrop open={isLoading}>
-        <CircularProgress />
-      </StyledBackdrop>
+      <Loader open={isLoading} />
       <Error
         open={isError}
         message={"Game initialization failed. Please try again."}

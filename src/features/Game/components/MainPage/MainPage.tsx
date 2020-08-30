@@ -4,7 +4,7 @@ import { GamesSharp } from "@material-ui/icons";
 import styled from "styled-components";
 import { InfoSideBar } from "../InfoSidebar";
 import { GameStateContainer } from "../GameStateContainer";
-import { defaultGameState } from "../../models/GameState";
+import { mockGameState } from "../../utils/mock";
 
 const TitleDiv = styled.div`
   font-size: 1.5rem;
@@ -28,8 +28,8 @@ export const MainPage: React.FC = () => {
         </Toolbar>
       </AppBar>
       <ContentDiv>
-        <InfoSideBar data={defaultGameState} />
-        <GameStateContainer data={defaultGameState} />
+        <InfoSideBar data={mockGameState} />
+        <GameStateContainer data={mockGameState} />
       </ContentDiv>
     </>
   );

@@ -3,7 +3,7 @@ import { PlayersSetup } from "../../../models/PlayersSetup";
 import { useAxiosRequest } from "../../../utils/useAxiosRequest";
 
 export const useInitNewGame = () => {
-  const { makeRequest, isLoading, isError, closeError } = useAxiosRequest("game", "POST");
+  const { makeRequest, ...rest } = useAxiosRequest("game", "post");
 
   const initNewGame = useCallback((data: PlayersSetup) => 
     makeRequest(data),
@@ -13,10 +13,8 @@ export const useInitNewGame = () => {
   return useMemo(
     () => ({
       initNewGame,
-      isLoading,
-      isError,
-      closeError,
+      ...rest
     }),
-    [initNewGame, isLoading, isError, closeError]
+    [initNewGame, rest]
   );
 };
