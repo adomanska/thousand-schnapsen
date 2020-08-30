@@ -3,8 +3,11 @@ import styled from "styled-components";
 import { Color } from "../../models/Color";
 import { Marriages } from "../Marriages";
 import { Points } from "../Points";
-import { Button, Paper } from "@material-ui/core";
+import { Button, Paper, Backdrop, CircularProgress } from "@material-ui/core";
 import { NewGameModal } from "../NewGameModal";
+import { Error } from "./components";
+import { useInitNewGame } from "./hooks";
+import { PlayersSetup } from "../../models/PlayersSetup";
 
 const Drawer = styled(Paper)`
   width: min-content;
@@ -29,6 +32,10 @@ const DrawerItem = styled.div`
   flex-direction: column;
 `;
 
+const StyledBackdrop = styled(Backdrop)`
+  z-index: 100;
+`;
+
 const mockData = {
   usedMariages: [Color.Spades, Color.Diamonds],
   activeMarriage: Color.Diamonds,
@@ -39,6 +46,7 @@ const mockData = {
 export const InfoSideBar: React.FC = () => {
   const { usedMariages, activeMarriage, playerNames, points } = mockData; // TODO: Replace mock data with data fetched from redux store
   const [newGameModalOpen, setNewGameModalOpen] = useState(false);
+  const { initNewGame, isLoading, isError, closeError } = useInitNewGame();
 
   const handleNewGameButtonClick = useCallback(
     () => setNewGameModalOpen(true),
@@ -50,9 +58,12 @@ export const InfoSideBar: React.FC = () => {
     [setNewGameModalOpen]
   );
 
-  const initializeNewGame = useCallback(() => setNewGameModalOpen(false), [
-    setNewGameModalOpen,
-  ]);
+  const initializeNewGame = useCallback((data: PlayersSetup) => {
+      initNewGame(data);
+      setNewGameModalOpen(false);
+    },
+    [setNewGameModalOpen]
+  );
 
   return (
     <>
@@ -82,6 +93,14 @@ export const InfoSideBar: React.FC = () => {
         open={newGameModalOpen}
         onClose={handleNewGameModalClose}
         onSubmit={initializeNewGame}
+      />
+      <StyledBackdrop open={isLoading}>
+        <CircularProgress />
+      </StyledBackdrop>
+      <Error
+        open={isError}
+        message={"Game initialization failed. Please try again."}
+        onClose={closeError}
       />
     </>
   );
