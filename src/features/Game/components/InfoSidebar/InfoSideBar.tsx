@@ -1,6 +1,5 @@
 import React, { useState, useCallback } from "react";
 import styled from "styled-components";
-import { Color } from "../../models/Color";
 import { Marriages } from "../Marriages";
 import { Points } from "../Points";
 import { Button, Paper, Backdrop, CircularProgress } from "@material-ui/core";
@@ -8,9 +7,10 @@ import { NewGameModal } from "../NewGameModal";
 import { Error } from "./components";
 import { useInitNewGame } from "./hooks";
 import { PlayersSetup } from "../../models/PlayersSetup";
+import { GameState } from "../../models/GameState";
 
 const Drawer = styled(Paper)`
-  width: min-content;
+  width: 15%;
   margin: 0.5rem;
   padding: 1rem;
   display: flex;
@@ -30,21 +30,24 @@ const DrawerItemHeader = styled.span`
 const DrawerItem = styled.div`
   display: flex;
   flex-direction: column;
+
+  &:last-child {
+    height: 100%;
+    display: flex;
+    flex-direction: column-reverse;
+  }
 `;
 
 const StyledBackdrop = styled(Backdrop)`
   z-index: 100;
 `;
 
-const mockData = {
-  usedMariages: [Color.Spades, Color.Diamonds],
-  activeMarriage: Color.Diamonds,
-  playerNames: ["Opponent1", "Me", "Opponent2"],
-  points: [40, 120, 60],
-};
+interface InfoSideBarProps {
+  data: GameState;
+}
 
-export const InfoSideBar: React.FC = () => {
-  const { usedMariages, activeMarriage, playerNames, points } = mockData; // TODO: Replace mock data with data fetched from redux store
+export const InfoSideBar: React.FC<InfoSideBarProps> = ({ data }) => {
+  const { usedMarriages, activeMarriage, playerNames, points } = data;
   const [newGameModalOpen, setNewGameModalOpen] = useState(false);
   const { initNewGame, isLoading, isError, closeError } = useInitNewGame();
 
@@ -58,11 +61,11 @@ export const InfoSideBar: React.FC = () => {
     [setNewGameModalOpen]
   );
 
-  const initializeNewGame = useCallback((data: PlayersSetup) => {
-      initNewGame(data);
+  const initializeNewGame = useCallback((playersSetup: PlayersSetup) => {
+      initNewGame(playersSetup);
       setNewGameModalOpen(false);
     },
-    [setNewGameModalOpen]
+    [initNewGame, setNewGameModalOpen]
   );
 
   return (
@@ -71,13 +74,16 @@ export const InfoSideBar: React.FC = () => {
         <DrawerItem>
           <DrawerItemHeader>MARRIAGES</DrawerItemHeader>
           <Marriages
-            usedMariages={usedMariages}
+            usedMariages={usedMarriages}
             activeMarriage={activeMarriage}
           />
         </DrawerItem>
         <DrawerItem>
           <DrawerItemHeader>POINTS</DrawerItemHeader>
-          <Points playerNames={playerNames} points={points} />
+          <Points 
+            playerNames={playerNames} 
+            points={points} 
+          />
         </DrawerItem>
         <DrawerItem>
           <Button

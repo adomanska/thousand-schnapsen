@@ -4,7 +4,7 @@ import { Color } from "./Color";
 export interface GameState {
   stack: Card[];
   hand: Card[];
-  availableActions: Card[];
+  availableActions?: Card[];
   nextPlayerId: number;
   playerId: number;
   playerNames: string[];
@@ -13,3 +13,14 @@ export interface GameState {
   activeMarriage?: Color;
   gameOver: boolean;
 }
+
+export const defaultGameState: GameState  = {
+  stack: [],
+  hand: [],
+  nextPlayerId: 0,
+  playerId: 0,
+  playerNames: ['-', '-', '-'],
+  points: [0, 0, 0],
+  usedMarriages: [],
+  gameOver: false
+};

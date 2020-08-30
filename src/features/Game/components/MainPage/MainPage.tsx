@@ -4,6 +4,7 @@ import { GamesSharp } from "@material-ui/icons";
 import styled from "styled-components";
 import { InfoSideBar } from "../InfoSidebar";
 import { GameState } from "../GameState";
+import { defaultGameState } from "../../models/GameState";
 
 const TitleDiv = styled.div`
   font-size: 1.5rem;
@@ -33,9 +34,9 @@ export const MainPage: React.FC = () => {
         </Toolbar>
       </AppBar>
       <ContentDiv>
-        <InfoSideBar />
+        <InfoSideBar data={defaultGameState} />
         <GameStateDiv>
-          <GameState />
+          <GameState data={defaultGameState} />
         </GameStateDiv>
       </ContentDiv>
     </>

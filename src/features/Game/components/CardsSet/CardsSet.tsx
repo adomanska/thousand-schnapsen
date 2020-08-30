@@ -15,6 +15,7 @@ const CardsDiv = styled.div`
   display: flex;
   width: fit-content;
   margin-bottom: 1rem;
+  height: 9rem;
 `;
 
 interface StyledCardProps {
@@ -81,7 +82,7 @@ export const CardsSet: React.FC<CardsSetProps> = ({
       onSelect(selectedCards);
     }
     setSelectedCards([]);
-  }, [onSelect, selectedCards, cards, setSelectedCards]);
+  }, [onSelect, selectedCards, setSelectedCards]);
 
   const selectButtonDisabled = useMemo(
     () =>
