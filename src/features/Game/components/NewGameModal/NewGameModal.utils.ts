@@ -1,10 +1,6 @@
 import { PlayersSetup } from "../../models/PlayersSetup";
 import { PlayerType } from "../../models/PlayerType";
 
-export type PlayersSetupTouched = {
-  [key in keyof PlayersSetup]: boolean;
-};
-
 export const isFormValid = (
   values: Partial<PlayersSetup>,
   setError: (message: string) => void

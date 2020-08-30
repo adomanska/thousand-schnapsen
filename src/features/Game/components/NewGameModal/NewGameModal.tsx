@@ -11,11 +11,8 @@ import { PlayersSetup } from "../../models/PlayersSetup";
 import { PlayerSelect, Error } from "./components";
 import { PlayerType } from "../../models/PlayerType";
 import styled from "styled-components";
-import {
-  PlayersSetupTouched,
-  isFormValid,
-  initialPlayersSetup,
-} from "./NewGameModal.utils";
+import { isFormValid, initialPlayersSetup } from "./NewGameModal.utils";
+import { Touched } from "../../utils/types";
 
 const FormDiv = styled.div`
   display: flex;
@@ -42,7 +39,7 @@ export const NewGameModal: React.FC<NewGameModalProps> = ({
   const [formValues, setFormValues] = useState<Partial<PlayersSetup>>(
     initialPlayersSetup
   );
-  const [touched, setTouched] = useState<Partial<PlayersSetupTouched>>({});
+  const [touched, setTouched] = useState<Touched<PlayersSetup>>({});
   const [error, setError] = useState<string>();
 
   const onFieldChange = useCallback(
