@@ -20,17 +20,18 @@ const CardsDiv = styled.div`
 interface StyledCardProps {
   active?: boolean;
   selected?: boolean;
+  disabled?: boolean;
 }
 const StyledCard = styled(Card)<StyledCardProps>`
-  margin: 5px;
-  box-shadow: 0 0 10px 5px
-    ${({ selected }) => (selected ? "lightblue" : "gray")};
-  pointer-events: ${({ active }) => (active ? "auto" : "none")};
-  ${({ selected }) => selected && "margin-top: -0.5rem;"}
+  margin: 0.5rem;
+  pointer-events: ${({ active, disabled }) => ((active && !disabled) ? "auto" : "none")};
+  ${({ selected }) => selected && "margin-top: -0.75rem;"}
+  ${({ active, disabled }) => (active && disabled) && "opacity: 0.2;"}
 `;
 
 interface CardsSetProps {
   cards: CardModel[];
+  availableCards?: CardModel[];
   active?: boolean;
   cardsToSelectCount?: number;
   onSelect?: (cards: CardModel[]) => void;
@@ -40,13 +41,14 @@ interface CardsSetProps {
 
 export const CardsSet: React.FC<CardsSetProps> = ({
   cards,
+  availableCards,
   active,
   cardsToSelectCount,
   onSelect,
   size,
   className,
 }) => {
-  const [selectedCards, setSelectedCards] = useState<number[]>([]);
+  const [selectedCards, setSelectedCards] = useState<CardModel[]>([]);
 
   useEffect(() => {
     if (!active) {
@@ -55,17 +57,16 @@ export const CardsSet: React.FC<CardsSetProps> = ({
   }, [active]);
 
   const handleCardClick = useCallback(
-    (index: number) => () => {
+    (card: CardModel) => () => {
       if (active) {
-        if (selectedCards.includes(index)) {
+        if (selectedCards.includes(card)) {
           setSelectedCards(
-            selectedCards.filter((curIndex) => curIndex !== index)
+            selectedCards.filter((curCard) => curCard !== card)
           );
-        } else if (
-          cardsToSelectCount &&
-          selectedCards.length < cardsToSelectCount
-        ) {
-          setSelectedCards([...selectedCards, index]);
+        } else if (cardsToSelectCount && cardsToSelectCount > 1 && selectedCards.length < cardsToSelectCount) {
+          setSelectedCards([...selectedCards, card]);
+        } else if (cardsToSelectCount === 1) {
+          setSelectedCards([card]);
         }
       }
     },
@@ -74,9 +75,9 @@ export const CardsSet: React.FC<CardsSetProps> = ({
 
   const handleSelect = useCallback(() => {
     if (onSelect) {
-      onSelect(selectedCards.map((index) => cards[index]));
-      setSelectedCards([]);
+      onSelect(selectedCards);
     }
+    setSelectedCards([]);
   }, [onSelect, selectedCards, cards, setSelectedCards]);
 
   const selectButtonDisabled = useMemo(
@@ -87,18 +88,29 @@ export const CardsSet: React.FC<CardsSetProps> = ({
     [active, selectedCards, cardsToSelectCount]
   );
 
+  const isSelected = useCallback((card: CardModel) => 
+    selectedCards.includes(card),
+    [selectedCards]
+  );
+
+  const isDisabled = useCallback((card: CardModel) =>
+    availableCards && !availableCards.some(({rank, color}) => card.color === color && card.rank === rank),
+    [availableCards]
+  );
+
   return (
     <MainDiv className={className}>
       <CardsDiv>
-        {cards.map(({ rank, color }, index) => (
+        {cards.map((card, index) => (
           <StyledCard
-            key={`${rank}-${color}`}
-            rank={rank}
-            color={color}
+            key={`${card.rank}-${card.color}`}
+            rank={card.rank}
+            color={card.color}
             size={size}
             active={active}
-            selected={selectedCards.includes(index)}
-            onClick={handleCardClick(index)}
+            selected={isSelected(card)}
+            disabled={isDisabled(card)}
+            onClick={handleCardClick(card)}
           />
         ))}
       </CardsDiv>
