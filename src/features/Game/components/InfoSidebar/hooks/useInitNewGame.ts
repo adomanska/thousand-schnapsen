@@ -1,16 +1,17 @@
 import { useState, useCallback, useMemo } from "react";
 import { PlayersSetup } from "../../../models/PlayersSetup";
 import Axios from "axios";
-import { url } from "inspector";
+import { useServiceDataContext } from "../../../utils/context";
 
 export const useInitNewGame = () => {
-  const apiUrl = "http://sample-url.com"; // TODO: Fetch url from context
+  const { apiUrl } = useServiceDataContext();
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
   const initNewGame = useCallback((data: PlayersSetup) => {
     setIsLoading(true);
-    Axios.post(apiUrl, data)
+    const url = `${apiUrl}/game`;
+    Axios.post(url, data)
       .then(() => setIsLoading(false))
       .catch(() => {
         setIsError(true);
