@@ -2,7 +2,7 @@ import { GameSetup } from "../../models/GameSetup";
 import { PlayerType } from "../../models/PlayerType";
 import { Touched } from "../../utils/types";
 
-type FormValues = GameSetup['playerTypes'];
+type FormValues = GameSetup["playerTypes"];
 
 export const isFormValid = (
   values: Partial<FormValues>,
@@ -22,11 +22,11 @@ export const isFormValid = (
 export const initialFormValues: Partial<FormValues> = [
   undefined,
   undefined,
-  undefined
+  undefined,
 ];
 
 export const initialTouched: Touched<FormValues> = [
   undefined,
   undefined,
-  undefined
-]
+  undefined,
+];

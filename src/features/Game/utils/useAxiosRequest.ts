@@ -2,7 +2,11 @@ import Axios, { Method, AxiosRequestConfig } from "axios";
 import { useServiceDataContext } from "./context";
 import { useState, useCallback, useMemo } from "react";
 
-export const useAxiosRequest = (url: string, method: Method, onSuccess?: (data?: any) => void) => {
+export const useAxiosRequest = (
+  url: string,
+  method: Method,
+  onSuccess?: (data?: any) => void
+) => {
   const { apiUrl } = useServiceDataContext();
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -14,16 +18,16 @@ export const useAxiosRequest = (url: string, method: Method, onSuccess?: (data?:
       const config: AxiosRequestConfig = {
         url: completeUrl,
         baseURL: apiUrl,
-        headers: { 'content-type': 'application/json' },
+        headers: { "content-type": "application/json" },
         method,
         data,
       };
       Axios.request(config)
-        .then(response => {
+        .then((response) => {
           if (onSuccess) {
-            onSuccess(response.data)
+            onSuccess(response.data);
           }
-          setIsLoading(false)
+          setIsLoading(false);
         })
         .catch(() => {
           setIsError(true);

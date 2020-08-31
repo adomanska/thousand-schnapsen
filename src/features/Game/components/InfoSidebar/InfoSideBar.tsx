@@ -44,10 +44,15 @@ interface InfoSideBarProps {
   updateData: (data: GameState) => void;
 }
 
-export const InfoSideBar: React.FC<InfoSideBarProps> = ({ data, updateData }) => {
+export const InfoSideBar: React.FC<InfoSideBarProps> = ({
+  data,
+  updateData,
+}) => {
   const { usedMarriages, activeMarriage, playerNames, points } = data;
   const [newGameModalOpen, setNewGameModalOpen] = useState(false);
-  const { initNewGame, isLoading, isError, closeError } = useInitNewGame(updateData);
+  const { initNewGame, isLoading, isError, closeError } = useInitNewGame(
+    updateData
+  );
 
   const handleNewGameButtonClick = useCallback(
     () => setNewGameModalOpen(true),

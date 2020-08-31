@@ -11,7 +11,11 @@ import { GameSetup } from "../../models/GameSetup";
 import { PlayerSelect, Error } from "./components";
 import { PlayerType } from "../../models/PlayerType";
 import styled from "styled-components";
-import { isFormValid, initialFormValues, initialTouched } from "./NewGameModal.utils";
+import {
+  isFormValid,
+  initialFormValues,
+  initialTouched,
+} from "./NewGameModal.utils";
 import { Touched } from "../../utils/types";
 
 const FormDiv = styled.div`
@@ -25,7 +29,7 @@ const FormDiv = styled.div`
   }
 `;
 
-type FormValues = GameSetup['playerTypes'];
+type FormValues = GameSetup["playerTypes"];
 
 interface NewGameModalProps {
   open: boolean;
@@ -49,7 +53,7 @@ export const NewGameModal: React.FC<NewGameModalProps> = ({
       setFormValues([
         ...formValues.slice(0, index),
         value,
-        ...formValues.slice(index + 1)
+        ...formValues.slice(index + 1),
       ]),
     [setFormValues, formValues]
   );
@@ -59,7 +63,7 @@ export const NewGameModal: React.FC<NewGameModalProps> = ({
       setTouched([
         ...touched.slice(0, index),
         true,
-        ...touched.slice(index + 1)
+        ...touched.slice(index + 1),
       ]),
     [setTouched, touched]
   );
