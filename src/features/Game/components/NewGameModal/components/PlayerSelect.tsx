@@ -49,8 +49,7 @@ export const PlayerSelect: React.FC<PlayerSelectProps> = ({
           key={option.value}
           value={option.value}
           disabled={
-            option.value === value ||
-            (isHumanAssigned && option.value === PlayerType.Human)
+            isHumanAssigned && option.value === PlayerType.Human && value !== PlayerType.Human
           }
         >
           {option.label}
