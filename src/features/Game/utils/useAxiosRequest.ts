@@ -2,7 +2,7 @@ import Axios, { Method, AxiosRequestConfig } from "axios";
 import { useServiceDataContext } from "./context";
 import { useState, useCallback, useMemo } from "react";
 
-export const useAxiosRequest = (url: string, method: Method) => {
+export const useAxiosRequest = (url: string, method: Method, onSuccess?: (data?: any) => void) => {
   const { apiUrl } = useServiceDataContext();
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -19,13 +19,18 @@ export const useAxiosRequest = (url: string, method: Method) => {
         data,
       };
       Axios.request(config)
-        .then(() => setIsLoading(false))
+        .then(response => {
+          if (onSuccess) {
+            onSuccess(response.data)
+          }
+          setIsLoading(false)
+        })
         .catch(() => {
           setIsError(true);
           setIsLoading(false);
         });
     },
-    [setIsLoading, apiUrl, url, setIsError, method]
+    [setIsLoading, apiUrl, url, setIsError, method, onSuccess]
   );
 
   const closeError = useCallback(() => setIsError(false), [setIsError]);

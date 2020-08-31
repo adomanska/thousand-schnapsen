@@ -9,31 +9,31 @@ import { Card } from "../../models/Card";
 
 const initialCards: Card[] = [
   {
-    color: Color.Diamonds,
+    suit: Color.Diamonds,
     rank: Rank.Nine,
   },
   {
-    color: Color.Clubs,
+    suit: Color.Clubs,
     rank: Rank.Nine,
   },
   {
-    color: Color.Diamonds,
+    suit: Color.Diamonds,
     rank: Rank.Ace,
   },
   {
-    color: Color.Diamonds,
+    suit: Color.Diamonds,
     rank: Rank.Jack,
   },
   {
-    color: Color.Hearts,
+    suit: Color.Hearts,
     rank: Rank.Ten,
   },
   {
-    color: Color.Spades,
+    suit: Color.Spades,
     rank: Rank.Queen,
   },
   {
-    color: Color.Clubs,
+    suit: Color.Clubs,
     rank: Rank.Jack,
   },
 ];

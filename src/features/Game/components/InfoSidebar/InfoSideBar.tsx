@@ -11,7 +11,7 @@ import { GameState } from "../../models/GameState";
 import { Loader } from "../../../../components/Loader";
 
 const Drawer = styled(Paper)`
-  width: 15%;
+  width: 20%;
   margin: 0.5rem;
   padding: 1rem;
   display: flex;
@@ -41,12 +41,13 @@ const DrawerItem = styled.div`
 
 interface InfoSideBarProps {
   data: GameState;
+  updateData: (data: GameState) => void;
 }
 
-export const InfoSideBar: React.FC<InfoSideBarProps> = ({ data }) => {
+export const InfoSideBar: React.FC<InfoSideBarProps> = ({ data, updateData }) => {
   const { usedMarriages, activeMarriage, playerNames, points } = data;
   const [newGameModalOpen, setNewGameModalOpen] = useState(false);
-  const { initNewGame, isLoading, isError, closeError } = useInitNewGame();
+  const { initNewGame, isLoading, isError, closeError } = useInitNewGame(updateData);
 
   const handleNewGameButtonClick = useCallback(
     () => setNewGameModalOpen(true),

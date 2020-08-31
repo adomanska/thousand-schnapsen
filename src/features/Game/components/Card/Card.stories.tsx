@@ -32,7 +32,7 @@ storiesOf("Features|Game/Card", module)
   .addDecorator(withKnobs)
   .add("default", () => (
     <Card
-      color={select("Color", colorOptions, Color.Clubs)}
+      suit={select("Color", colorOptions, Color.Clubs)}
       rank={select("Rank", rankOptions, Rank.Nine)}
       revealed={boolean("Revealed", true)}
       size={select("Size", sizeOptions, "small")}

@@ -40,7 +40,7 @@ export const CardsStack: React.FC<CardsStackProps> = ({
       {cards.map((card, index) => (
         <RotatedCard
           key={`stack-card-${index}`}
-          color={card.color}
+          suit={card.suit}
           rank={card.rank}
           rotation={rotationStep * index}
           size={size}

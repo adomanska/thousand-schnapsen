@@ -26,7 +26,7 @@ const StyledIcon = styled(Icon)`
 `;
 
 interface CardProps {
-  color: Color;
+  suit: Color;
   rank: Rank;
   size?: "small" | "medium" | "large";
   className?: string;
@@ -35,7 +35,7 @@ interface CardProps {
 }
 
 export const Card: React.FC<CardProps> = ({
-  color,
+  suit,
   rank,
   className,
   onClick,
@@ -44,19 +44,19 @@ export const Card: React.FC<CardProps> = ({
 }) => {
   const ColorIcon: React.FC = useMemo(
     () => () => (
-      <StyledIcon iconType={colorsIconTypesMapping[color]} alt="Color Icon" />
+      <StyledIcon iconType={colorsIconTypesMapping[suit]} alt="Suit Icon" />
     ),
-    [color]
+    [suit]
   );
 
   const RankIcon: React.FC = useMemo(
     () => () => (
       <StyledIcon
-        iconType={ranksColorsIconTypesMapping[rank][color]}
+        iconType={ranksColorsIconTypesMapping[rank][suit]}
         alt="Rank Icon"
       />
     ),
-    [rank, color]
+    [rank, suit]
   );
 
   return (
