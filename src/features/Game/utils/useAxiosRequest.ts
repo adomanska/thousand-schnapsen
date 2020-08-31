@@ -14,6 +14,7 @@ export const useAxiosRequest = (url: string, method: Method) => {
       const config: AxiosRequestConfig = {
         url: completeUrl,
         baseURL: apiUrl,
+        headers: { 'content-type': 'application/json' },
         method,
         data,
       };
