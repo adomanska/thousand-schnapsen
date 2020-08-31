@@ -11,7 +11,7 @@ import { GameSetup } from "../../models/GameSetup";
 import { PlayerSelect, Error } from "./components";
 import { PlayerType } from "../../models/PlayerType";
 import styled from "styled-components";
-import { isFormValid, initialPlayersSetup } from "./NewGameModal.utils";
+import { isFormValid, initialFormValues, initialTouched } from "./NewGameModal.utils";
 import { Touched } from "../../utils/types";
 
 const FormDiv = styled.div`
@@ -25,6 +25,8 @@ const FormDiv = styled.div`
   }
 `;
 
+type FormValues = GameSetup['playerTypes'];
+
 interface NewGameModalProps {
   open: boolean;
   onClose: () => void;
@@ -36,27 +38,29 @@ export const NewGameModal: React.FC<NewGameModalProps> = ({
   onClose,
   onSubmit,
 }) => {
-  const [formValues, setFormValues] = useState<Partial<GameSetup>>(
-    initialPlayersSetup
+  const [formValues, setFormValues] = useState<Partial<FormValues>>(
+    initialFormValues
   );
-  const [touched, setTouched] = useState<Touched<GameSetup>>({});
+  const [touched, setTouched] = useState<Touched<FormValues>>(initialTouched);
   const [error, setError] = useState<string>();
 
   const onFieldChange = useCallback(
     (index: number) => (value: PlayerType) =>
-      setFormValues({
-        ...formValues,
-        [index]: value,
-      }),
+      setFormValues([
+        ...formValues.slice(0, index),
+        value,
+        ...formValues.slice(index + 1)
+      ]),
     [setFormValues, formValues]
   );
 
   const onFieldTouched = useCallback(
     (index: number) => () =>
-      setTouched({
-        ...touched,
-        [index]: true,
-      }),
+      setTouched([
+        ...touched.slice(0, index),
+        true,
+        ...touched.slice(index + 1)
+      ]),
     [setTouched, touched]
   );
 
@@ -75,14 +79,14 @@ export const NewGameModal: React.FC<NewGameModalProps> = ({
 
   const handleSubmit = useCallback(() => {
     if (isFormValid(formValues, setError)) {
-      onSubmit(formValues);
+      onSubmit({ playerTypes: formValues });
     }
   }, [formValues, setError, onSubmit]);
 
   useEffect(() => {
     if (open) {
-      setFormValues(initialPlayersSetup);
-      setTouched({});
+      setFormValues(initialFormValues);
+      setTouched(initialTouched);
     }
   }, [open]);
 
