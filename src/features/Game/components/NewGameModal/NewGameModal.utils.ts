@@ -1,10 +1,10 @@
-import { PlayersSetup } from "../../models/PlayersSetup";
+import { GameSetup } from "../../models/GameSetup";
 import { PlayerType } from "../../models/PlayerType";
 
 export const isFormValid = (
-  values: Partial<PlayersSetup>,
+  values: Partial<GameSetup>,
   setError: (message: string) => void
-): values is PlayersSetup => {
+): values is GameSetup => {
   if (Object.values(values).some((value) => !value)) {
     setError("Please set all players");
     return false;

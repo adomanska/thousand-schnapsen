@@ -1,5 +1,5 @@
 import { PlayerType } from "./PlayerType";
 
-export interface PlayersSetup {
+export interface GameSetup {
   [key: number]: PlayerType;
 }

@@ -6,7 +6,7 @@ import { Button, Paper } from "@material-ui/core";
 import { NewGameModal } from "../NewGameModal";
 import { Error } from "../../../../components/Error";
 import { useInitNewGame } from "./hooks";
-import { PlayersSetup } from "../../models/PlayersSetup";
+import { GameSetup } from "../../models/GameSetup";
 import { GameState } from "../../models/GameState";
 import { Loader } from "../../../../components/Loader";
 
@@ -59,8 +59,8 @@ export const InfoSideBar: React.FC<InfoSideBarProps> = ({ data }) => {
   );
 
   const initializeNewGame = useCallback(
-    (playersSetup: PlayersSetup) => {
-      initNewGame(playersSetup);
+    (gameSetup: GameSetup) => {
+      initNewGame(gameSetup);
       setNewGameModalOpen(false);
     },
     [initNewGame, setNewGameModalOpen]

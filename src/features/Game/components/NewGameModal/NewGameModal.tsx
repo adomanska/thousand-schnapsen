@@ -7,7 +7,7 @@ import {
   Button,
   DialogContentText,
 } from "@material-ui/core";
-import { PlayersSetup } from "../../models/PlayersSetup";
+import { GameSetup } from "../../models/GameSetup";
 import { PlayerSelect, Error } from "./components";
 import { PlayerType } from "../../models/PlayerType";
 import styled from "styled-components";
@@ -28,7 +28,7 @@ const FormDiv = styled.div`
 interface NewGameModalProps {
   open: boolean;
   onClose: () => void;
-  onSubmit: (values: PlayersSetup) => void;
+  onSubmit: (values: GameSetup) => void;
 }
 
 export const NewGameModal: React.FC<NewGameModalProps> = ({
@@ -36,10 +36,10 @@ export const NewGameModal: React.FC<NewGameModalProps> = ({
   onClose,
   onSubmit,
 }) => {
-  const [formValues, setFormValues] = useState<Partial<PlayersSetup>>(
+  const [formValues, setFormValues] = useState<Partial<GameSetup>>(
     initialPlayersSetup
   );
-  const [touched, setTouched] = useState<Touched<PlayersSetup>>({});
+  const [touched, setTouched] = useState<Touched<GameSetup>>({});
   const [error, setError] = useState<string>();
 
   const onFieldChange = useCallback(
