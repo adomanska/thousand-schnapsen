@@ -8,15 +8,15 @@ import { Rank } from "../../models/Rank";
 
 const cards: Card[] = [
   {
-    color: Color.Diamonds,
+    suit: Color.Diamonds,
     rank: Rank.Nine,
   },
   {
-    color: Color.Clubs,
+    suit: Color.Clubs,
     rank: Rank.Nine,
   },
   {
-    color: Color.Diamonds,
+    suit: Color.Diamonds,
     rank: Rank.Ace,
   },
 ];

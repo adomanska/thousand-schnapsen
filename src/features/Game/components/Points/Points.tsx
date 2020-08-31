@@ -18,8 +18,8 @@ export const Points: React.FC<PointsProps> = ({ playerNames, points }) => (
     <Table>
       <TableHead>
         <TableRow>
-          {playerNames.map((playerName) => (
-            <TableCell key={playerName} align="right">
+          {playerNames.map((playerName, index) => (
+            <TableCell key={index} align="right">
               <b>{playerName}</b>
             </TableCell>
           ))}
@@ -27,8 +27,8 @@ export const Points: React.FC<PointsProps> = ({ playerNames, points }) => (
       </TableHead>
       <TableBody>
         <TableRow>
-          {points.map((playerPoints) => (
-            <TableCell key={playerPoints} align="right">
+          {points.map((playerPoints, index) => (
+            <TableCell key={index} align="right">
               {playerPoints}
             </TableCell>
           ))}

@@ -1,11 +1,12 @@
 import { useCallback, useMemo } from "react";
-import { PlayersSetup } from "../../../models/PlayersSetup";
+import { GameSetup } from "../../../models/GameSetup";
 import { useAxiosRequest } from "../../../utils/useAxiosRequest";
+import { GameState } from "../../../models/GameState";
 
-export const useInitNewGame = () => {
-  const { makeRequest, ...rest } = useAxiosRequest("game", "post");
+export const useInitNewGame = (updateData: (data: GameState) => void) => {
+  const { makeRequest, ...rest } = useAxiosRequest("game", "post", updateData);
 
-  const initNewGame = useCallback((data: PlayersSetup) => makeRequest(data), [
+  const initNewGame = useCallback((data: GameSetup) => makeRequest(data), [
     makeRequest,
   ]);
 

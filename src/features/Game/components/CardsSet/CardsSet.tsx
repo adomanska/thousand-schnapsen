@@ -101,7 +101,7 @@ export const CardsSet: React.FC<CardsSetProps> = ({
     (card: CardModel) =>
       availableCards &&
       !availableCards.some(
-        ({ rank, color }) => card.color === color && card.rank === rank
+        ({ rank, suit }) => card.suit === suit && card.rank === rank
       ),
     [availableCards]
   );
@@ -111,9 +111,9 @@ export const CardsSet: React.FC<CardsSetProps> = ({
       <CardsDiv>
         {cards.map((card, index) => (
           <StyledCard
-            key={`${card.rank}-${card.color}`}
+            key={`${card.rank}-${card.suit}`}
             rank={card.rank}
-            color={card.color}
+            suit={card.suit}
             size={size}
             active={active}
             selected={isSelected(card)}

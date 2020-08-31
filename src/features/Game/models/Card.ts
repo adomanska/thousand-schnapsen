@@ -3,5 +3,5 @@ import { Color } from "./Color";
 
 export interface Card {
   rank: Rank;
-  color: Color;
+  suit: Color;
 }
