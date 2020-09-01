@@ -8,7 +8,7 @@ const App: React.FC = () => {
   return (
     <div className="App">
       <ServiceDataContext.Provider value={serviceData}>
-        <MainPage />
+          <MainPage />
       </ServiceDataContext.Provider>
     </div>
   );
