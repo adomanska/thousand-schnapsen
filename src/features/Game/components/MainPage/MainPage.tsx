@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import { AppBar, Toolbar, Typography } from "@material-ui/core";
 import { GamesSharp } from "@material-ui/icons";
 import styled from "styled-components";
 import { InfoSideBar } from "../InfoSidebar";
 import { GameStateContainer } from "../GameStateContainer";
-import { defaultGameState, GameState } from "../../models/GameState";
+import { defaultGameState } from "../../models/GameState";
+import { useData } from "./hooks";
 
-const TitleDiv = styled.div`
+const Title = styled(Typography)`
   font-size: 1.5rem;
   margin-left: 1rem;
 `;
@@ -17,20 +18,18 @@ const ContentDiv = styled.div`
 `;
 
 export const MainPage: React.FC = () => {
-  const [data, setData] = useState<GameState>(defaultGameState);
+  const data = useData(defaultGameState);
 
   return (
     <>
       <AppBar position="sticky">
         <Toolbar>
           <GamesSharp />
-          <Typography>
-            <TitleDiv>THOUSAND SCHNAPSEN</TitleDiv>
-          </Typography>
+          <Title>THOUSAND SCHNAPSEN</Title>
         </Toolbar>
       </AppBar>
       <ContentDiv>
-        <InfoSideBar data={data} updateData={setData} />
+        <InfoSideBar data={data} />
         <GameStateContainer data={data} />
       </ContentDiv>
     </>
