@@ -111,7 +111,7 @@ export const CardsSet: React.FC<CardsSetProps> = ({
   return (
     <MainDiv className={className}>
       <CardsDiv>
-        {sortedCards.map(card => (
+        {sortedCards.map((card) => (
           <StyledCard
             key={`${card.rank}-${card.suit}`}
             rank={card.rank}
