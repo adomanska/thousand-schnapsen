@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { Card } from "../Card/Card";
 import { Size } from "../../utils/types";
 import { Card as CardModel } from "../../models/Card";
+import { useSortedCards } from "./hooks";
 
 const MainDiv = styled.div`
   display: flex;
@@ -51,6 +52,7 @@ export const CardsSet: React.FC<CardsSetProps> = ({
   className,
 }) => {
   const [selectedCards, setSelectedCards] = useState<CardModel[]>([]);
+  const sortedCards = useSortedCards(cards);
 
   useEffect(() => {
     if (!active) {
@@ -109,7 +111,7 @@ export const CardsSet: React.FC<CardsSetProps> = ({
   return (
     <MainDiv className={className}>
       <CardsDiv>
-        {cards.map((card, index) => (
+        {sortedCards.map(card => (
           <StyledCard
             key={`${card.rank}-${card.suit}`}
             rank={card.rank}
