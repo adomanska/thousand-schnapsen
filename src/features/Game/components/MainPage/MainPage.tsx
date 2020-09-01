@@ -30,7 +30,7 @@ export const MainPage: React.FC = () => {
         </Toolbar>
       </AppBar>
       <ContentDiv>
-        <InfoSideBar data={data} updateData={setData} />
+        <InfoSideBar data={data} />
         <GameStateContainer data={data} />
       </ContentDiv>
     </>
